@@ -1,6 +1,6 @@
-﻿import { requireAdmin } from "@/lib/session";
+import { requireAdmin } from "@/lib/session";
 import { getVenues, getGames, getCourts } from "@/lib/store";
-import { AdminCatalogForm } from "@/components/admin-catalog-form";
+import { AdminCatalogManager } from "@/components/admin-catalog-manager";
 import { MapPin, Dumbbell, Layers } from "lucide-react";
 
 export default async function AdminCatalogPage() {
@@ -20,7 +20,7 @@ export default async function AdminCatalogPage() {
           </span>
           <h1 className="text-3xl font-extrabold text-white mt-1">Catalog Management</h1>
           <p className="text-gray-400 text-sm mt-1">
-            Create new venues, expand sports options, and configure courts with custom pricing rules.
+            Create, edit, or remove venues, sports, and court specifications in real-time on Firebase.
           </p>
         </div>
 
@@ -57,7 +57,7 @@ export default async function AdminCatalogPage() {
           </div>
         </div>
 
-        <AdminCatalogForm />
+        <AdminCatalogManager initialVenues={venues} initialGames={games} initialCourts={courts} />
       </div>
     </div>
   );

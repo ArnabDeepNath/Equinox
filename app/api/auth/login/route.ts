@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getUserByEmail, upsertUser } from "@/lib/store";
 import { sessionCookieName } from "@/lib/session";
@@ -25,7 +25,8 @@ export async function POST(request: NextRequest) {
 
     if (!user) {
       // First time user through OAuth or direct email
-      const isAdmin = email.toLowerCase().includes("admin") || email === "arnabdeepnath@gmail.com";
+      // Strict admin check: Only admin@equinoxsport.com gets admin role by default.
+      const isAdmin = email.toLowerCase() === "admin@equinoxsport.com";
       const newUser: AppUser = {
         id: uid || `user-${Date.now()}`,
         name: name || email.split("@")[0],

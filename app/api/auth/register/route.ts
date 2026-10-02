@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getUserByEmail, upsertUser } from "@/lib/store";
 import { sessionCookieName } from "@/lib/session";
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
       return response;
     }
 
-    const isAdmin = email.toLowerCase().includes("admin") || email === "arnabdeepnath@gmail.com";
+    const isAdmin = email.toLowerCase() === "admin@equinoxsport.com";
     const newUser: AppUser = {
       id: uid || `user-${Date.now()}`,
       name,

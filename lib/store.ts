@@ -1,10 +1,11 @@
-﻿import {
+import {
   collection,
   doc,
   getDoc,
   getDocs,
   setDoc,
   updateDoc,
+  deleteDoc,
   query,
   where,
   limit,
@@ -87,6 +88,7 @@ export async function upsertUser(user: AppUser): Promise<AppUser> {
   return user;
 }
 
+// ----------------- Venues -----------------
 export async function getVenues(): Promise<Venue[]> {
   try {
     await ensureCollectionsSeeded();
@@ -109,6 +111,25 @@ export async function createVenue(entry: Omit<Venue, "id">): Promise<Venue> {
   return venue;
 }
 
+export async function updateVenue(venueId: string, entry: Partial<Omit<Venue, "id">>): Promise<void> {
+  try {
+    await updateDoc(doc(db, "venues", venueId), entry);
+  } catch (err) {
+    console.error("updateVenue err:", err);
+    throw err;
+  }
+}
+
+export async function deleteVenue(venueId: string): Promise<void> {
+  try {
+    await deleteDoc(doc(db, "venues", venueId));
+  } catch (err) {
+    console.error("deleteVenue err:", err);
+    throw err;
+  }
+}
+
+// ----------------- Games -----------------
 export async function getGames(): Promise<Game[]> {
   try {
     await ensureCollectionsSeeded();
@@ -131,6 +152,25 @@ export async function createGame(entry: Omit<Game, "id">): Promise<Game> {
   return game;
 }
 
+export async function updateGame(gameId: string, entry: Partial<Omit<Game, "id">>): Promise<void> {
+  try {
+    await updateDoc(doc(db, "games", gameId), entry);
+  } catch (err) {
+    console.error("updateGame err:", err);
+    throw err;
+  }
+}
+
+export async function deleteGame(gameId: string): Promise<void> {
+  try {
+    await deleteDoc(doc(db, "games", gameId));
+  } catch (err) {
+    console.error("deleteGame err:", err);
+    throw err;
+  }
+}
+
+// ----------------- Courts -----------------
 export async function getCourts(): Promise<Court[]> {
   try {
     await ensureCollectionsSeeded();
@@ -153,6 +193,25 @@ export async function createCourt(entry: Omit<Court, "id">): Promise<Court> {
   return court;
 }
 
+export async function updateCourt(courtId: string, entry: Partial<Omit<Court, "id">>): Promise<void> {
+  try {
+    await updateDoc(doc(db, "courts", courtId), entry);
+  } catch (err) {
+    console.error("updateCourt err:", err);
+    throw err;
+  }
+}
+
+export async function deleteCourt(courtId: string): Promise<void> {
+  try {
+    await deleteDoc(doc(db, "courts", courtId));
+  } catch (err) {
+    console.error("deleteCourt err:", err);
+    throw err;
+  }
+}
+
+// ----------------- Slots -----------------
 export async function getSlots(): Promise<Slot[]> {
   try {
     await ensureCollectionsSeeded();
@@ -164,6 +223,7 @@ export async function getSlots(): Promise<Slot[]> {
   return defaultSlots;
 }
 
+// ----------------- Bookings -----------------
 export async function getBookings(): Promise<Booking[]> {
   try {
     const snap = await getDocs(collection(db, "bookings"));
@@ -185,6 +245,7 @@ export async function createBooking(entry: Omit<Booking, "id" | "createdAt">): P
   return booking;
 }
 
+// ----------------- Transactions -----------------
 export async function getTransactions(): Promise<Transaction[]> {
   try {
     const snap = await getDocs(collection(db, "transactions"));
@@ -206,6 +267,7 @@ export async function createTransaction(entry: Omit<Transaction, "id" | "created
   return transaction;
 }
 
+// ----------------- Membership Requests -----------------
 export async function getMembershipRequests(): Promise<MembershipRequest[]> {
   try {
     const snap = await getDocs(collection(db, "membershipRequests"));
@@ -239,6 +301,7 @@ export async function updateMembershipRequestStatus(requestId: string, status: "
   }
 }
 
+// ----------------- Community -----------------
 export async function getCommunityPosts(): Promise<CommunityPost[]> {
   try {
     const snap = await getDocs(collection(db, "communityPosts"));
@@ -312,6 +375,7 @@ export async function addLike(postId: string): Promise<CommunityPost | null> {
   return null;
 }
 
+// ----------------- Audit Logs -----------------
 export async function getAuditLogs(): Promise<AuditLog[]> {
   try {
     const snap = await getDocs(collection(db, "auditLogs"));
