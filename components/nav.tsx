@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { signOut } from "firebase/auth";
+import { auth } from "@/lib/firebase/client";
 import { Dumbbell, Menu, X, Shield, User as UserIcon, LogOut } from "lucide-react";
 import { AppUser } from "@/lib/types";
 
@@ -10,7 +13,28 @@ interface NavProps {
 }
 
 export function Nav({ user }: NavProps) {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  async function handleLogout() {
+    setLoggingOut(true);
+    try {
+      try {
+        await signOut(auth);
+      } catch (err) {
+        console.warn("Firebase signout notice:", err);
+      }
+      await fetch("/api/auth/logout", { credentials: "same-origin" });
+      router.push("/");
+      router.refresh();
+    } catch (err) {
+      console.error("Logout error:", err);
+      window.location.href = "/";
+    } finally {
+      setLoggingOut(false);
+    }
+  }
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-neutral-950/80 backdrop-blur-md">
@@ -63,15 +87,15 @@ export function Nav({ user }: NavProps) {
                     </span>
                   )}
                 </div>
-                <form action="/api/auth/logout" method="post">
-                  <button
-                    type="submit"
-                    className="inline-flex items-center gap-1.5 rounded-full bg-white/5 hover:bg-white/10 px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-all border border-white/10"
-                  >
-                    <LogOut className="w-3.5 h-3.5" />
-                    Logout
-                  </button>
-                </form>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  disabled={loggingOut}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-white/5 hover:bg-white/10 px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-all border border-white/10 disabled:opacity-50"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                  {loggingOut ? "Logging out..." : "Logout"}
+                </button>
               </div>
             ) : (
               <div className="flex items-center gap-3">
@@ -143,14 +167,14 @@ export function Nav({ user }: NavProps) {
                 <div className="text-sm text-gray-400">
                   Signed in as <span className="font-semibold text-white">{user.name}</span>
                 </div>
-                <form action="/api/auth/logout" method="post">
-                  <button
-                    type="submit"
-                    className="w-full rounded-full bg-white/10 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/20 transition"
-                  >
-                    Logout
-                  </button>
-                </form>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  disabled={loggingOut}
+                  className="w-full text-center rounded-full bg-white/10 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/20 transition disabled:opacity-50"
+                >
+                  {loggingOut ? "Logging out..." : "Logout"}
+                </button>
               </div>
             ) : (
               <div className="flex flex-col gap-2">
