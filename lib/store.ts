@@ -246,6 +246,21 @@ export async function createBooking(entry: Omit<Booking, "id" | "createdAt">): P
 }
 
 // ----------------- Transactions -----------------
+export async function updateBookingStatus(
+  bookingId: string,
+  status: "confirmed" | "cancelled" | "pending"
+): Promise<void> {
+  try {
+    await updateDoc(doc(db, "bookings", bookingId), {
+      status,
+      updatedAt: new Date().toISOString(),
+    });
+  } catch (err) {
+    console.error("updateBookingStatus err:", err);
+    throw err;
+  }
+}
+
 export async function getTransactions(): Promise<Transaction[]> {
   try {
     const snap = await getDocs(collection(db, "transactions"));

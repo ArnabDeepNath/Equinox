@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { bookingConfirmSchema } from "@/lib/validators";
 import { getUserFromRequest, notFound, unauthorized } from "@/lib/api-auth";
 import { calculateBookingPrice, canBookSlot } from "@/lib/pricing";
@@ -49,6 +49,7 @@ export async function POST(request: NextRequest) {
     isMember: user.membershipStatus === "approved",
   });
 
+  // Requests are placed in 'pending' status until Admin approves or rejects them
   const booking = await createBooking({
     userId: user.id,
     venueId: parsed.data.venueId,
@@ -60,7 +61,7 @@ export async function POST(request: NextRequest) {
     discount: quote.discount,
     total: quote.total,
     currency: quote.currency,
-    status: "confirmed",
+    status: "pending",
   });
 
   const transaction = await createTransaction({
@@ -69,18 +70,19 @@ export async function POST(request: NextRequest) {
     amount: booking.total,
     currency: booking.currency,
     method: "mock",
-    status: "success",
+    status: "pending",
   });
 
   await writeAuditLog({
     actorId: user.id,
     actorRole: user.role,
-    action: "booking_confirmed",
+    action: "booking_submitted_pending",
     entity: "bookings",
     entityId: booking.id,
-    details: `Confirmed booking for ${court.name} at ${venue.name} (${slot.label})`,
+    details: `Booking request placed for ${court.name} at ${venue.name} (${slot.label}) on ${booking.bookingDate}. Awaiting admin review.`,
   });
 
+  // Dispatches pending receipt email & mock WhatsApp
   await sendBookingNotifications({
     booking,
     user,
