@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #070707;
-  --foreground: #f4e7bf;
-  --card: #111111;
-  --muted: #1b1b1b;
-  --muted-foreground: #b3a37a;
-  --border: #2d2515;
-  --gold: #d4af37;
-  --gold-soft: #f2d87a;
+  --background: #09090b;
+  --foreground: #f4f4f5;
+  --card: #121215;
+  --card-foreground: #fafafa;
+  --muted: #1e1e24;
+  --muted-foreground: #a1a1aa;
+  --border: #27272a;
+  --gold: #f59e0b;
+  --gold-soft: #fbbf24;
 }
 
 @theme inline {
@@ -28,6 +29,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 a {
@@ -35,25 +37,23 @@ a {
 }
 
 ::selection {
-  background: var(--gold);
-  color: #111;
+  background: rgba(245, 158, 11, 0.35);
+  color: #fff;
 }
 
 .premium-card {
-  border: 1px solid var(--border);
-  background: linear-gradient(180deg, #111 0%, #0c0c0c 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(24, 24, 27, 0.8) 0%, rgba(15, 15, 18, 0.95) 100%);
+  backdrop-filter: blur(12px);
   border-radius: 1rem;
 }
 
-.premium-btn {
-  background: linear-gradient(135deg, #e7c25a 0%, #c99822 100%);
-  color: #151515;
-  font-weight: 600;
-  border-radius: 0.75rem;
-  transition: all 0.2s ease;
+.gold-gradient-text {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.premium-btn:hover {
-  filter: brightness(1.06);
-  transform: translateY(-1px);
+.gold-glow {
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.2);
 }

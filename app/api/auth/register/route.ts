@@ -1,46 +1,65 @@
-import { NextRequest, NextResponse } from "next/server";
+﻿import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { store } from "@/lib/store";
+import { getUserByEmail, upsertUser } from "@/lib/store";
 import { sessionCookieName } from "@/lib/session";
+import { AppUser } from "@/lib/types";
 
 const registerSchema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
-  favoriteGames: z.array(z.string()).default([]),
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Valid email required"),
+  favoriteGames: z.array(z.string()).optional().default([]),
+  uid: z.string().optional(),
 });
 
 export async function POST(request: NextRequest) {
-  const body = await request.json();
-  const parsed = registerSchema.safeParse(body);
+  try {
+    const body = await request.json();
+    const parsed = registerSchema.safeParse(body);
 
-  if (!parsed.success) {
-    return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
+    if (!parsed.success) {
+      const err = parsed.error.issues[0]?.message || "Invalid payload";
+      return NextResponse.json({ error: err }, { status: 400 });
+    }
+
+    const { email, name, favoriteGames, uid } = parsed.data;
+
+    const existing = await getUserByEmail(email);
+    if (existing) {
+      // Log them in smoothly
+      const response = NextResponse.json({ ok: true, user: existing, message: "Welcome back!" });
+      response.cookies.set(sessionCookieName, existing.id, {
+        httpOnly: true,
+        sameSite: "lax",
+        maxAge: 60 * 60 * 24 * 7,
+        path: "/",
+      });
+      return response;
+    }
+
+    const isAdmin = email.toLowerCase().includes("admin") || email === "arnabdeepnath@gmail.com";
+    const newUser: AppUser = {
+      id: uid || `user-${Date.now()}`,
+      name,
+      email: email.toLowerCase(),
+      role: isAdmin ? "admin" : "user",
+      membershipStatus: isAdmin ? "approved" : "none",
+      favoriteGames: favoriteGames.length ? favoriteGames : ["Paddle"],
+      createdAt: new Date().toISOString(),
+    };
+
+    const user = await upsertUser(newUser);
+
+    const response = NextResponse.json({ ok: true, user });
+    response.cookies.set(sessionCookieName, user.id, {
+      httpOnly: true,
+      sameSite: "lax",
+      maxAge: 60 * 60 * 24 * 7,
+      path: "/",
+    });
+
+    return response;
+  } catch (error) {
+    console.error("Register API error:", error);
+    return NextResponse.json({ error: "Failed to create account" }, { status: 500 });
   }
-
-  const existing = store.users.find((item) => item.email === parsed.data.email);
-  if (existing) {
-    return NextResponse.json({ error: "Email already registered" }, { status: 409 });
-  }
-
-  const user = {
-    id: `user-${Math.random().toString(36).slice(2, 10)}`,
-    name: parsed.data.name,
-    email: parsed.data.email,
-    role: "user" as const,
-    membershipStatus: "none" as const,
-    favoriteGames: parsed.data.favoriteGames,
-    createdAt: new Date().toISOString(),
-  };
-
-  store.users.unshift(user);
-
-  const response = NextResponse.json({ ok: true, user });
-  response.cookies.set(sessionCookieName, user.id, {
-    httpOnly: true,
-    sameSite: "lax",
-    maxAge: 60 * 60 * 24 * 7,
-    path: "/",
-  });
-
-  return response;
 }

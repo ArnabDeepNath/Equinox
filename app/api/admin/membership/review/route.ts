@@ -1,44 +1,48 @@
-import { NextRequest, NextResponse } from "next/server";
+﻿import { NextRequest, NextResponse } from "next/server";
 import { membershipReviewSchema } from "@/lib/validators";
 import { forbidden, getUserFromRequest, notFound, unauthorized } from "@/lib/api-auth";
-import { store, writeAuditLog } from "@/lib/store";
+import {
+  getMembershipRequests,
+  getUserById,
+  updateMembershipRequestStatus,
+  upsertUser,
+  writeAuditLog,
+} from "@/lib/store";
 
 export async function POST(request: NextRequest) {
-  const actor = getUserFromRequest(request);
+  const actor = await getUserFromRequest(request);
   if (!actor) return unauthorized();
-  if (actor.role !== "admin") return forbidden();
+  if (actor.role !== "admin") return forbidden("Administrator rights required");
 
   const body = await request.json();
   const parsed = membershipReviewSchema.safeParse(body);
   if (!parsed.success) {
-    return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
+    return NextResponse.json({ error: "Invalid review parameters" }, { status: 400 });
   }
 
-  const membershipRequest = store.membershipRequests.find(
-    (item) => item.id === parsed.data.requestId,
-  );
-  if (!membershipRequest) return notFound("Membership request not found");
+  const allRequests = await getMembershipRequests();
+  const membershipRequest = allRequests.find((item) => item.id === parsed.data.requestId);
+  if (!membershipRequest) return notFound("Membership application not found");
 
-  const targetUser = store.users.find((user) => user.id === membershipRequest.userId);
-  if (!targetUser) return notFound("Target user not found");
+  const targetUser = await getUserById(membershipRequest.userId);
+  if (!targetUser) return notFound("Applicant user account not found");
 
-  membershipRequest.status = parsed.data.decision;
-  membershipRequest.reviewedBy = actor.id;
-  membershipRequest.reviewedAt = new Date().toISOString();
+  await updateMembershipRequestStatus(membershipRequest.id, parsed.data.decision, actor.id);
+
   targetUser.membershipStatus = parsed.data.decision;
+  await upsertUser(targetUser);
 
-  writeAuditLog({
+  await writeAuditLog({
     actorId: actor.id,
     actorRole: actor.role,
     action: `membership_${parsed.data.decision}`,
     entity: "membershipRequests",
     entityId: membershipRequest.id,
-    details: `${actor.name} ${parsed.data.decision} membership for ${targetUser.name}`,
+    details: `${actor.name} ${parsed.data.decision} membership for ${targetUser.name} (${targetUser.email})`,
   });
 
   return NextResponse.json({
     ok: true,
-    membershipRequest,
     user: targetUser,
   });
 }

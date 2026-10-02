@@ -1,12 +1,12 @@
-import { NextRequest, NextResponse } from "next/server";
+﻿import { NextRequest, NextResponse } from "next/server";
 import { bookingQuoteSchema } from "@/lib/validators";
 import { getUserFromRequest, notFound, unauthorized } from "@/lib/api-auth";
 import { calculateBookingPrice, canBookSlot } from "@/lib/pricing";
-import { store } from "@/lib/store";
+import { getSlots } from "@/lib/store";
 
 export async function POST(request: NextRequest) {
-  const user = getUserFromRequest(request);
-  if (!user) return unauthorized();
+  const user = await getUserFromRequest(request);
+  if (!user) return unauthorized("Please log in to calculate slot pricing");
 
   const body = await request.json();
   const parsed = bookingQuoteSchema.safeParse(body);
@@ -14,13 +14,14 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
   }
 
-  const slot = store.slots.find((item) => item.id === parsed.data.slotId);
-  if (!slot) return notFound("Slot not found");
+  const allSlots = await getSlots();
+  const slot = allSlots.find((item) => item.id === parsed.data.slotId);
+  if (!slot) return notFound("Selected slot is not available");
 
   const allowed = canBookSlot(user.membershipStatus === "approved", slot.access);
   if (!allowed) {
     return NextResponse.json(
-      { error: "This slot is only available for approved members" },
+      { error: "This slot is restricted to approved Equinox members. Please request membership to unlock." },
       { status: 403 },
     );
   }

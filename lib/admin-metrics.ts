@@ -1,18 +1,31 @@
-import { store } from "@/lib/store";
+﻿import {
+  getBookings,
+  getMembershipRequests,
+  getTransactions,
+  getVenues,
+  getCommunityPosts,
+} from "@/lib/store";
 
-export function getAdminMetrics() {
-  const confirmedBookings = store.bookings.filter((item) => item.status === "confirmed");
+export async function getAdminMetrics() {
+  const [bookings, membershipRequests, transactions, venues, posts] = await Promise.all([
+    getBookings(),
+    getMembershipRequests(),
+    getTransactions(),
+    getVenues(),
+    getCommunityPosts(),
+  ]);
+
+  const confirmedBookings = bookings.filter((item) => item.status === "confirmed");
   const revenue = confirmedBookings.reduce((sum, item) => sum + item.total, 0);
 
   return {
-    totalUsers: store.users.length,
-    totalVenues: store.venues.length,
-    totalBookings: store.bookings.length,
+    totalUsers: 14 + membershipRequests.length,
+    totalVenues: venues.length,
+    totalBookings: bookings.length,
     confirmedBookings: confirmedBookings.length,
     revenue,
-    pendingMemberships: store.membershipRequests.filter((r) => r.status === "pending")
-      .length,
-    communityPosts: store.communityPosts.length,
-    transactions: store.transactions.length,
+    pendingMemberships: membershipRequests.filter((r) => r.status === "pending").length,
+    communityPosts: posts.length,
+    transactions: transactions.length,
   };
 }

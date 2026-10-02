@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+﻿import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { createCourt, createGame, createVenue, writeAuditLog } from "@/lib/store";
 import { forbidden, getUserFromRequest, unauthorized } from "@/lib/api-auth";
@@ -40,7 +40,7 @@ const catalogSchema = z.discriminatedUnion("type", [
 ]);
 
 export async function POST(request: NextRequest) {
-  const actor = getUserFromRequest(request);
+  const actor = await getUserFromRequest(request);
   if (!actor) return unauthorized();
   if (actor.role !== "admin") return forbidden();
 
@@ -53,27 +53,27 @@ export async function POST(request: NextRequest) {
   let created: unknown;
 
   if (parsed.data.type === "venue") {
-    created = createVenue({
+    created = await createVenue({
       ...parsed.data,
       active: true,
     });
   }
 
   if (parsed.data.type === "game") {
-    created = createGame(parsed.data);
+    created = await createGame(parsed.data);
   }
 
   if (parsed.data.type === "court") {
-    created = createCourt(parsed.data);
+    created = await createCourt(parsed.data);
   }
 
-  writeAuditLog({
+  await writeAuditLog({
     actorId: actor.id,
     actorRole: actor.role,
     action: `catalog_${parsed.data.type}_created`,
     entity: parsed.data.type,
     entityId: JSON.stringify((created as { id?: string })?.id ?? "n/a"),
-    details: `Created ${parsed.data.type}`,
+    details: `Created new ${parsed.data.type}`,
   });
 
   return NextResponse.json({ ok: true, data: created });

@@ -1,6 +1,4 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { users } from "@/lib/mock-data";
+﻿import { NextRequest, NextResponse } from "next/server";
 import { sessionCookieName } from "@/lib/session";
 
 export function proxy(request: NextRequest) {
@@ -11,14 +9,9 @@ export function proxy(request: NextRequest) {
   }
 
   const session = request.cookies.get(sessionCookieName)?.value;
-  const user = users.find((item) => item.id === session);
 
-  if (!user) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
-
-  if (user.role !== "admin") {
-    return NextResponse.redirect(new URL("/", request.url));
+  if (!session) {
+    return NextResponse.redirect(new URL("/login?redirect=/admin", request.url));
   }
 
   return NextResponse.next();

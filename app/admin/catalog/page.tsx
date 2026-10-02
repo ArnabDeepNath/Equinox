@@ -1,35 +1,64 @@
-import { SectionTitle } from "@/components/section-title";
-import { Card } from "@/components/ui/card";
-import { requireAdmin } from "@/lib/session";
-import { store } from "@/lib/store";
+﻿import { requireAdmin } from "@/lib/session";
+import { getVenues, getGames, getCourts } from "@/lib/store";
 import { AdminCatalogForm } from "@/components/admin-catalog-form";
+import { MapPin, Dumbbell, Layers } from "lucide-react";
 
 export default async function AdminCatalogPage() {
   await requireAdmin();
+  const [venues, games, courts] = await Promise.all([
+    getVenues(),
+    getGames(),
+    getCourts(),
+  ]);
 
   return (
-    <div className="mx-auto max-w-7xl space-y-8 px-4 py-10 sm:px-6 lg:px-8">
-      <SectionTitle
-        title="Catalog Management"
-        subtitle="Add venues, games, and courts from admin panel for multi-venue setup."
-      />
+    <div className="min-h-screen bg-neutral-950 text-slate-50 py-12">
+      <div className="mx-auto max-w-7xl space-y-10 px-4 sm:px-6 lg:px-8">
+        <div>
+          <span className="text-amber-400 font-bold uppercase tracking-wider text-xs">
+            Infrastructure & Inventory
+          </span>
+          <h1 className="text-3xl font-extrabold text-white mt-1">Catalog Management</h1>
+          <p className="text-gray-400 text-sm mt-1">
+            Create new venues, expand sports options, and configure courts with custom pricing rules.
+          </p>
+        </div>
 
-      <AdminCatalogForm />
+        {/* Counts summary */}
+        <div className="grid gap-4 sm:grid-cols-3">
+          <div className="rounded-3xl border border-white/10 bg-neutral-900/50 p-6 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
+              <MapPin className="w-6 h-6 text-amber-400" />
+            </div>
+            <div>
+              <p className="text-xs uppercase font-bold text-gray-400 tracking-wider">Venues</p>
+              <p className="text-3xl font-black text-white">{venues.length}</p>
+            </div>
+          </div>
 
-      <section className="grid gap-4 lg:grid-cols-3">
-        <Card>
-          <p className="text-xs text-[var(--muted-foreground)]">Venues</p>
-          <p className="mt-1 text-2xl font-semibold">{store.venues.length}</p>
-        </Card>
-        <Card>
-          <p className="text-xs text-[var(--muted-foreground)]">Games</p>
-          <p className="mt-1 text-2xl font-semibold">{store.games.length}</p>
-        </Card>
-        <Card>
-          <p className="text-xs text-[var(--muted-foreground)]">Courts</p>
-          <p className="mt-1 text-2xl font-semibold">{store.courts.length}</p>
-        </Card>
-      </section>
+          <div className="rounded-3xl border border-white/10 bg-neutral-900/50 p-6 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+              <Dumbbell className="w-6 h-6 text-orange-400" />
+            </div>
+            <div>
+              <p className="text-xs uppercase font-bold text-gray-400 tracking-wider">Sports / Games</p>
+              <p className="text-3xl font-black text-white">{games.length}</p>
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-neutral-900/50 p-6 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+              <Layers className="w-6 h-6 text-emerald-400" />
+            </div>
+            <div>
+              <p className="text-xs uppercase font-bold text-gray-400 tracking-wider">Courts Configured</p>
+              <p className="text-3xl font-black text-white">{courts.length}</p>
+            </div>
+          </div>
+        </div>
+
+        <AdminCatalogForm />
+      </div>
     </div>
   );
 }

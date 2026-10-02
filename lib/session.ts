@@ -1,6 +1,6 @@
-import { cookies } from "next/headers";
+﻿import { cookies } from "next/headers";
 import { AppUser } from "@/lib/types";
-import { users } from "@/lib/mock-data";
+import { getUserById, getUserByEmail } from "@/lib/store";
 
 const SESSION_COOKIE_KEY = "equinox_user";
 
@@ -12,8 +12,12 @@ export async function getCurrentUser(): Promise<AppUser | null> {
     return null;
   }
 
-  const user = users.find((item) => item.id === value);
-  return user ?? null;
+  let user: AppUser | null = await getUserById(value);
+  if (!user && value.includes("@")) {
+    user = await getUserByEmail(value);
+  }
+
+  return user;
 }
 
 export async function requireUser() {
