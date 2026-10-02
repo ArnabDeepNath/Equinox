@@ -17,24 +17,24 @@ const now = new Date().toISOString();
 export const venues: Venue[] = [
   {
     id: "venue-1",
-    name: "Equinox Arena Downtown",
-    city: "Mumbai",
+    name: "Equinox Beltola Complex",
+    city: "Guwahati",
     timezone: "Asia/Kolkata",
     currency: "INR",
-    address: "BKC Main Road, Mumbai",
+    address: "Near Beltola College, Guwahati",
     image:
-      "https://images.unsplash.com/photo-1571019613576-2b22c76fd955?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
     active: true,
   },
   {
     id: "venue-2",
-    name: "Equinox Sports Hub",
-    city: "Bengaluru",
+    name: "Equinox Ganeshguri Complex",
+    city: "Guwahati",
     timezone: "Asia/Kolkata",
     currency: "INR",
-    address: "Indiranagar 12th Main, Bengaluru",
+    address: "Near ABC Mall, GS Road, Guwahati",
     image:
-      "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1646649853703-7645147474ba?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0",
     active: true,
   },
 ];
@@ -45,7 +45,7 @@ export const games: Game[] = [
     name: "Paddle",
     description: "Professional paddle courts with evening lighting.",
     image:
-      "https://images.unsplash.com/photo-1612874742237-6526221588e3?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1646649853703-7645147474ba?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0",
     features: ["LED lights", "Coach support", "Locker room"],
     venueIds: ["venue-1", "venue-2"],
   },
@@ -63,7 +63,7 @@ export const games: Game[] = [
     name: "Table Tennis",
     description: "Indoor climate-controlled TT arena.",
     image:
-      "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1646978567314-32cfd5a8854e?q=80&w=1255&auto=format&fit=crop&ixlib=rb-4.1.0",
     features: ["ITTF tables", "Pro paddles", "Practice wall"],
     venueIds: ["venue-2"],
   },
@@ -76,7 +76,7 @@ export const courts: Court[] = [
     gameId: "game-1",
     name: "Paddle Court A",
     image:
-      "https://images.unsplash.com/photo-1622279457486-28f6f8d3e95a?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1646649851800-48dba35edc76?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0",
     features: ["4 players", "Outdoor", "Night play"],
     basePrice: 1200,
     memberDiscountPercent: 15,
@@ -147,7 +147,7 @@ export const slots: Slot[] = [
 export const users: AppUser[] = [
   {
     id: "admin-1",
-    name: "Equinox Admin",
+    name: "Equinox Super Admin",
     email: "admin@equinoxsport.com",
     role: "admin",
     membershipStatus: "approved",
@@ -209,7 +209,7 @@ export const membershipRequests: MembershipRequest[] = [
   {
     id: "mr-1",
     userId: "user-2",
-    reason: "I train daily and need early morning member slots.",
+    reason: "I train daily and need early morning member slots in Guwahati.",
     status: "pending",
     requestedAt: now,
   },
@@ -219,7 +219,7 @@ export const communityPosts: CommunityPost[] = [
   {
     id: "post-1",
     userId: "user-1",
-    content: "Anyone up for a paddle doubles league this weekend?",
+    content: "Anyone up for a paddle doubles league this weekend in Guwahati?",
     likes: 5,
     createdAt: now,
   },
@@ -230,7 +230,7 @@ export const communityComments: CommunityComment[] = [
     id: "comment-1",
     postId: "post-1",
     userId: "user-2",
-    content: "I am in! Prefer Saturday evening.",
+    content: "I am in! Prefer Saturday evening at Beltola Complex.",
     createdAt: now,
   },
 ];

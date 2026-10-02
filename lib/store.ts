@@ -358,7 +358,7 @@ export async function getCommunityComments(): Promise<CommunityComment[]> {
       id: "comment-1",
       postId: "post-1",
       userId: "meera@example.com",
-      content: "I am in! Prefer Saturday evening at Equinox BKC.",
+      content: "I am in! Prefer Saturday evening in Guwahati.",
       createdAt: new Date().toISOString(),
     },
   ];

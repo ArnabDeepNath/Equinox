@@ -139,7 +139,7 @@ export default function JoinPage() {
                 { icon: Sparkles, text: "Save up to 20% on peak paddle & turf slots" },
                 { icon: Calendar, text: "Priority conditional booking windows for members" },
                 { icon: ShieldCheck, text: "Direct WhatsApp and email confirmation on booking" },
-                { icon: CheckCircle2, text: "Access to multi-city venue network (Mumbai & BLR)" },
+                { icon: CheckCircle2, text: "Access to verified sports venues across Guwahati" },
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center gap-3.5 text-sm text-gray-300">
                   <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center flex-shrink-0">

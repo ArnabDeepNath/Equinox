@@ -112,7 +112,7 @@ export function CommunityFeed({
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          placeholder="Looking for paddle doubles partners this Saturday at BKC? Speak up..."
+          placeholder="Looking for paddle doubles partners this Saturday in Guwahati? Speak up..."
           rows={3}
           className="w-full rounded-[10px] border border-[#2A2A2A] bg-[#0E0E0E] p-3 text-sm text-white placeholder-[#555] focus:outline-none focus:border-[#F5B301]"
         />

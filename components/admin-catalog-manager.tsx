@@ -68,7 +68,7 @@ export function AdminCatalogManager({
     setEditTarget(null);
     if (activeTab === "venues") {
       setVName("");
-      setVCity("Mumbai");
+      setVCity("Guwahati");
       setVTimezone("Asia/Kolkata");
       setVCurrency("INR");
       setVAddress("");
@@ -484,7 +484,7 @@ export function AdminCatalogManager({
                       value={vName}
                       onChange={(e) => setVName(e.target.value)}
                       required
-                      placeholder="Equinox Arena Downtown"
+                      placeholder="Equinox Beltola Complex"
                       className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
                     />
                   </div>
@@ -497,7 +497,7 @@ export function AdminCatalogManager({
                         value={vCity}
                         onChange={(e) => setVCity(e.target.value)}
                         required
-                        placeholder="Mumbai"
+                        placeholder="Guwahati"
                         className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
                       />
                     </div>
@@ -533,7 +533,7 @@ export function AdminCatalogManager({
                       onChange={(e) => setVAddress(e.target.value)}
                       required
                       rows={2}
-                      placeholder="BKC Main Road, Mumbai"
+                      placeholder="Beltola / Ganeshguri, Guwahati"
                       className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-2.5 text-white text-sm focus:outline-none focus:border-amber-500"
                     />
                   </div>

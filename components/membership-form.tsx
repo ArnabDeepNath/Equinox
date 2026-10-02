@@ -49,7 +49,7 @@ export function MembershipForm() {
           minLength={10}
           maxLength={300}
           rows={4}
-          placeholder="I play paddle twice a week on weekday mornings at BKC and wish to reserve peak slots..."
+          placeholder="I play paddle twice a week on weekday mornings in Guwahati and wish to reserve peak slots..."
           className="w-full rounded-[10px] border border-[#2A2A2A] bg-[#0E0E0E] p-3 text-sm text-white placeholder-[#555] focus:outline-none focus:border-[#F5B301]"
         />
         <span className="text-[10px] text-[#A1A1A1]">Minimum 10 characters</span>

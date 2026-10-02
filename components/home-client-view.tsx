@@ -44,7 +44,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#2A2A2A] bg-[#121212] text-xs font-medium text-[#A1A1A1]">
                 <span className="w-2 h-2 rounded-full bg-[#F5B301]"></span>
-                Live Court Availability Across Mumbai & Bengaluru
+                Live Court Availability Across Guwahati
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-tight text-white leading-[1.1]">
@@ -234,7 +234,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
               </div>
               <h3 className="text-lg font-semibold text-white">Choose Venue</h3>
               <p className="text-sm text-[#A1A1A1] leading-relaxed">
-                Browse verified venues near you in Mumbai or Bengaluru with court amenities and ratings.
+                Browse verified venues near you in Guwahati with court amenities and ratings.
               </p>
             </div>
 
