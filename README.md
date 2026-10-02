@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Equinox Sports Booking PWA (POC)
 
-## Getting Started
+Premium gold/black themed sports booking platform built with **Next.js + Firebase**.
 
-First, run the development server:
+## Included in this POC
+
+- User-facing platform with:
+  - Venue and game discovery
+  - Slot booking flow (multi-venue)
+  - Membership request flow
+  - Community feed (posts/comments/likes)
+- Admin panel at `/admin` with:
+  - Dashboard metrics
+  - Bookings
+  - Transactions
+  - Membership approvals
+  - Catalog management (venues/games/courts)
+  - Audit logs
+- Role-based access (Admin + User)
+- Membership conditional booking:
+  - Members-only slots
+  - Member discounts
+- Mock payment flow (gateway-ready architecture)
+- Email confirmation (real SMTP if configured)
+- WhatsApp notification mock logger
+- PWA support (manifest + service worker)
+
+## Tech Stack
+
+- Next.js (App Router, TypeScript)
+- Firebase (Auth/Firestore-ready setup)
+- Tailwind CSS
+- shadcn-style reusable UI primitives
+
+## Quick Start
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Copy env file:
+
+```bash
+cp .env.example .env.local
+```
+
+3. Fill Firebase and SMTP values in `.env.local`.
+
+4. Run dev server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open: [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demo Users (POC)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `admin@equinoxsport.com` (Admin)
+- `aarav@example.com` (User, approved member)
+- `meera@example.com` (User, pending member)
 
-## Learn More
+Use `/login` with any of the above emails.
 
-To learn more about Next.js, take a look at the following resources:
+## Firestore deployment files
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `firestore.rules`
+- `firestore.indexes.json`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Deploy with Firebase CLI after linking your project.
 
-## Deploy on Vercel
+## Deploying to Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push this repository to GitHub.
+2. Import in Vercel.
+3. Add all environment variables from `.env.example`.
+4. Deploy.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes for next phase
+
+- Replace mock payment with Razorpay/Instamojo adapter.
+- Enable Firebase Phone OTP auth.
+- Move in-memory mock data to real Firestore reads/writes.

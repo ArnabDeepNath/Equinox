@@ -1,69 +1,138 @@
 import Image from "next/image";
+import Link from "next/link";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { SectionTitle } from "@/components/section-title";
+import { UserSummary } from "@/components/user-summary";
+import { getCurrentUser } from "@/lib/session";
+import { store } from "@/lib/store";
 
-export default function Home() {
+export default async function Home() {
+  const user = await getCurrentUser();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="mx-auto flex w-full max-w-7xl flex-col gap-16 px-4 py-10 sm:px-6 lg:px-8">
+      <section className="grid items-center gap-8 lg:grid-cols-2">
+        <div className="space-y-5">
+          <p className="text-sm uppercase tracking-[0.2em] text-[var(--gold-soft)]">
+            Premium Sports Booking Platform
           </p>
+          <h1 className="text-4xl font-bold leading-tight sm:text-5xl">
+            Book Paddle, Football, Table Tennis & More in Seconds.
+          </h1>
+          <p className="max-w-xl text-sm text-[var(--muted-foreground)] sm:text-base">
+            Equinox Sports is a multi-venue booking PWA with membership based exclusive slots,
+            dynamic pricing, secure role-based access, and a vibrant sports community.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/book">
+              <Button>Book a Slot</Button>
+            </Link>
+            <Link href="/community">
+              <Button variant="secondary">Join Community</Button>
+            </Link>
+            {!user ? (
+              <Link href="/join">
+                <Button variant="secondary">Become a Member</Button>
+              </Link>
+            ) : null}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <Card className="overflow-hidden p-0">
+          <Image
+            src="https://images.unsplash.com/photo-1543351611-58f69d0f7df5?q=80&w=1200&auto=format&fit=crop"
+            alt="Premium sports venue"
+            width={900}
+            height={600}
+            className="h-full min-h-[320px] w-full object-cover"
+          />
+        </Card>
+      </section>
+
+      {user ? (
+        <section>
+          <SectionTitle
+            title="Your Membership Snapshot"
+            subtitle="Use your profile and membership status to unlock exclusive member slots."
+          />
+          <UserSummary user={user} />
+        </section>
+      ) : null}
+
+      <section>
+        <SectionTitle title="Popular Games" subtitle="Configured by admin with venue-specific courts and features." />
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {store.games.map((game) => (
+            <Card key={game.id} className="space-y-3">
+              <Image
+                src={game.image}
+                alt={game.name}
+                width={600}
+                height={350}
+                className="h-44 w-full rounded-lg object-cover"
+              />
+              <h3 className="text-lg font-semibold">{game.name}</h3>
+              <p className="text-sm text-[var(--muted-foreground)]">{game.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {game.features.map((feature) => (
+                  <span
+                    key={feature}
+                    className="rounded-full border border-[var(--border)] px-2 py-1 text-xs text-[var(--gold-soft)]"
+                  >
+                    {feature}
+                  </span>
+                ))}
+              </div>
+            </Card>
+          ))}
         </div>
-      </main>
+      </section>
+
+      <section>
+        <SectionTitle title="Active Venues" subtitle="Timezone and currency managed venue-wise by admin." />
+        <div className="grid gap-4 md:grid-cols-2">
+          {store.venues.map((venue) => (
+            <Card key={venue.id} className="space-y-3">
+              <Image
+                src={venue.image}
+                alt={venue.name}
+                width={700}
+                height={400}
+                className="h-44 w-full rounded-lg object-cover"
+              />
+              <div className="space-y-1">
+                <h3 className="text-lg font-semibold">{venue.name}</h3>
+                <p className="text-sm text-[var(--muted-foreground)]">{venue.address}</p>
+                <p className="text-xs text-[var(--gold-soft)]">
+                  {venue.city} · {venue.timezone} · {venue.currency}
+                </p>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="grid gap-4 md:grid-cols-3">
+        <Card>
+          <h3 className="mb-2 text-lg font-semibold">Membership Access</h3>
+          <p className="text-sm text-[var(--muted-foreground)]">
+            Members get exclusive timing windows and discounted pricing for each court.
+          </p>
+        </Card>
+        <Card>
+          <h3 className="mb-2 text-lg font-semibold">POC Payments</h3>
+          <p className="text-sm text-[var(--muted-foreground)]">
+            Mock payment flow is active now. Razorpay/Instamojo connectors can plug in next.
+          </p>
+        </Card>
+        <Card>
+          <h3 className="mb-2 text-lg font-semibold">Community First</h3>
+          <p className="text-sm text-[var(--muted-foreground)]">
+            Users can create posts, comment, and like discussions around their favorite sports.
+          </p>
+        </Card>
+      </section>
     </div>
   );
 }
