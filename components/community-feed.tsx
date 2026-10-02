@@ -1,15 +1,8 @@
-﻿"use client";
+"use client";
 
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
-import {
-  MessageSquare,
-  Heart,
-  Send,
-  User,
-  Clock,
-  Sparkles,
-} from "lucide-react";
+import { Heart, Send, User } from "lucide-react";
 import { AppUser, CommunityComment, CommunityPost } from "@/lib/types";
 
 interface CommunityFeedProps {
@@ -54,7 +47,7 @@ export function CommunityFeed({
 
       setPosts((prev) => [data.post, ...prev]);
       setContent("");
-      toast.success("Published to club lounge!");
+      toast.success("Published to community");
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Error publishing post");
     } finally {
@@ -105,35 +98,34 @@ export function CommunityFeed({
   return (
     <div className="space-y-6">
       {/* Create Post */}
-      <div className="rounded-3xl border border-white/10 bg-neutral-900/60 p-6 backdrop-blur-md space-y-4">
+      <div className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-6 space-y-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center font-bold text-amber-400">
+          <div className="w-8 h-8 rounded-full bg-[#1A1A1A] flex items-center justify-center font-bold text-[#F5B301] text-xs">
             {user.name.charAt(0).toUpperCase()}
           </div>
           <div>
-            <p className="font-bold text-white text-sm">{user.name}</p>
-            <p className="text-xs text-gray-400">Share match openings, practice invites, or club banter</p>
+            <p className="font-semibold text-white text-sm">{user.name}</p>
+            <p className="text-xs text-[#A1A1A1]">Share match openings, practice invites, or equipment tips</p>
           </div>
         </div>
 
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          placeholder={`Looking for paddle doubles partners this Saturday at BKC? Speak up...`}
+          placeholder="Looking for paddle doubles partners this Saturday at BKC? Speak up..."
           rows={3}
-          className="w-full rounded-2xl border border-white/10 bg-neutral-950 p-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
+          className="w-full rounded-[10px] border border-[#2A2A2A] bg-[#0E0E0E] p-3 text-sm text-white placeholder-[#555] focus:outline-none focus:border-[#F5B301]"
         />
 
-        <div className="flex justify-between items-center pt-1">
-          <span className="text-xs text-gray-500">Visible to all Equinox players</span>
+        <div className="flex justify-end pt-1">
           <button
             type="button"
             disabled={loadingPost}
             onClick={createPost}
-            className="rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-neutral-950 font-bold px-6 py-2.5 text-sm transition hover:brightness-110 shadow-md shadow-orange-500/20 disabled:opacity-50 inline-flex items-center gap-1.5"
+            className="rounded-[10px] bg-[#F5B301] hover:bg-[#e0a400] text-black font-semibold px-5 py-2.5 text-xs transition-colors disabled:opacity-50 inline-flex items-center gap-1.5"
           >
-            <Send className="w-4 h-4" />
-            {loadingPost ? "Posting..." : "Share with Club"}
+            <Send className="w-3.5 h-3.5" />
+            {loadingPost ? "Posting..." : "Post to Community"}
           </button>
         </div>
       </div>
@@ -146,17 +138,17 @@ export function CommunityFeed({
           return (
             <div
               key={post.id}
-              className="rounded-3xl border border-white/10 bg-neutral-900/40 p-6 space-y-4 hover:border-white/20 transition"
+              className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-6 space-y-4"
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-amber-400">
-                    <User className="w-4 h-4" />
+                  <div className="w-7 h-7 rounded-full bg-[#1A1A1A] flex items-center justify-center text-xs font-semibold text-[#F5B301]">
+                    <User className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <p className="font-bold text-white text-sm">{post.userId}</p>
-                    <p className="text-[10px] text-gray-500">
-                      {new Date(post.createdAt).toLocaleString()}
+                    <p className="font-semibold text-white text-sm">{post.userId}</p>
+                    <p className="text-[10px] text-[#A1A1A1]">
+                      {new Date(post.createdAt).toLocaleDateString()}
                     </p>
                   </div>
                 </div>
@@ -164,29 +156,29 @@ export function CommunityFeed({
                 <button
                   type="button"
                   onClick={() => likePost(post.id)}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 px-3 py-1.5 text-xs text-gray-300 hover:text-white transition"
+                  className="inline-flex items-center gap-1 rounded-[8px] border border-[#2A2A2A] bg-[#0E0E0E] px-2.5 py-1 text-xs text-[#A1A1A1] hover:text-white transition-colors"
                 >
-                  <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500/20" />
+                  <Heart className="w-3.5 h-3.5 text-rose-500" />
                   <span>{post.likes}</span>
                 </button>
               </div>
 
-              <p className="text-sm text-gray-200 leading-relaxed pl-1">
+              <p className="text-sm text-[#ddd] leading-relaxed">
                 {post.content}
               </p>
 
               {/* Comments Section */}
-              <div className="space-y-2 pt-2 border-t border-white/5">
+              <div className="space-y-2 pt-3 border-t border-[#1E1E1E]">
                 {postComments.map((c) => (
                   <div
                     key={c.id}
-                    className="rounded-2xl bg-neutral-950/60 border border-white/5 p-3.5 space-y-1"
+                    className="rounded-[8px] bg-[#0E0E0E] p-3 space-y-1 text-xs"
                   >
-                    <div className="flex items-center justify-between text-[11px] text-gray-400">
-                      <span className="font-bold text-gray-300">{c.userId}</span>
+                    <div className="flex items-center justify-between text-[11px] text-[#A1A1A1]">
+                      <span className="font-medium text-white">{c.userId}</span>
                       <span className="text-[10px]">{new Date(c.createdAt).toLocaleTimeString()}</span>
                     </div>
-                    <p className="text-xs text-gray-200">{c.content}</p>
+                    <p className="text-[#ccc]">{c.content}</p>
                   </div>
                 ))}
 
@@ -197,13 +189,13 @@ export function CommunityFeed({
                     onChange={(e) =>
                       setCommentByPost((prev) => ({ ...prev, [post.id]: e.target.value }))
                     }
-                    placeholder="Write a reply or join the team..."
-                    className="flex-1 rounded-full border border-white/10 bg-neutral-950 px-4 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
+                    placeholder="Write a reply..."
+                    className="flex-1 rounded-[8px] border border-[#2A2A2A] bg-[#0E0E0E] px-3.5 py-2 text-xs text-white placeholder-[#555] focus:outline-none focus:border-[#F5B301]"
                   />
                   <button
                     type="button"
                     onClick={() => addComment(post.id)}
-                    className="rounded-full bg-white/10 hover:bg-white/20 border border-white/15 px-5 py-2 text-xs font-semibold text-white transition"
+                    className="rounded-[8px] border border-[#2A2A2A] hover:border-[#3A3A3A] px-4 py-2 text-xs font-medium text-white transition-colors"
                   >
                     Reply
                   </button>

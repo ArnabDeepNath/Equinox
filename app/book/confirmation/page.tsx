@@ -1,7 +1,7 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { getBookings, getVenues, getCourts, getSlots } from "@/lib/store";
 import { formatCurrency } from "@/lib/utils";
-import { CheckCircle2, Calendar, MapPin, ArrowRight } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 
 export default async function BookingConfirmationPage({
   searchParams,
@@ -14,12 +14,12 @@ export default async function BookingConfirmationPage({
 
   if (!booking) {
     return (
-      <div className="min-h-screen bg-neutral-950 text-slate-50 flex items-center justify-center p-4">
-        <div className="rounded-3xl border border-white/10 bg-neutral-900/60 p-8 max-w-md w-full text-center space-y-4">
-          <p className="text-gray-400 text-sm">Booking details not found or expired.</p>
+      <div className="min-h-screen bg-[#0B0B0B] text-white flex items-center justify-center p-4">
+        <div className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-8 max-w-md w-full text-center space-y-4">
+          <p className="text-[#A1A1A1] text-sm">Booking details not found.</p>
           <Link
             href="/book"
-            className="inline-block rounded-full bg-amber-500 text-neutral-950 font-bold px-6 py-2.5 text-sm"
+            className="inline-block rounded-[10px] bg-[#F5B301] text-black font-semibold px-5 py-2.5 text-xs"
           >
             Go to Booking
           </Link>
@@ -39,67 +39,60 @@ export default async function BookingConfirmationPage({
   const slot = slots.find((item) => item.id === booking.slotId);
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-slate-50 py-16 px-4 sm:px-6">
-      <div className="mx-auto max-w-xl">
-        <div className="rounded-3xl border border-emerald-500/30 bg-gradient-to-b from-neutral-900/90 to-neutral-900/40 p-8 sm:p-10 backdrop-blur-xl shadow-2xl relative overflow-hidden">
-          <div className="absolute -top-16 -right-16 w-36 h-36 bg-emerald-500/10 rounded-full blur-2xl"></div>
-
-          <div className="w-16 h-16 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center mb-6 text-emerald-400">
-            <CheckCircle2 className="w-9 h-9" />
+    <div className="min-h-screen bg-[#0B0B0B] text-white py-16 px-4 sm:px-6">
+      <div className="mx-auto max-w-lg">
+        <div className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-8 space-y-6">
+          <div className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+            <Check className="w-6 h-6" />
           </div>
 
-          <span className="text-emerald-400 font-bold uppercase tracking-wider text-xs">
-            Slot Locked & Confirmed
-          </span>
-          <h1 className="text-3xl font-black text-white mt-1">Booking Confirmed!</h1>
-          <p className="text-gray-400 text-sm mt-1 leading-relaxed">
-            Your court has been reserved. A confirmation email has been dispatched and WhatsApp notification logged.
-          </p>
+          <div>
+            <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
+              Confirmed
+            </span>
+            <h1 className="text-2xl font-bold text-white mt-1">Booking Confirmed</h1>
+            <p className="text-xs text-[#A1A1A1] mt-1">
+              Your court is reserved. A confirmation has been sent to your email.
+            </p>
+          </div>
 
-          <div className="my-8 rounded-2xl bg-neutral-950/80 border border-white/10 p-6 space-y-3.5 text-xs">
-            <div className="flex justify-between items-center pb-3 border-b border-white/10">
-              <span className="text-gray-400">Booking Reference</span>
-              <span className="font-mono font-bold text-amber-400 text-sm">{booking.id}</span>
+          <div className="rounded-[12px] bg-[#0E0E0E] border border-[#1E1E1E] p-5 space-y-3 text-xs">
+            <div className="flex justify-between items-center pb-2 border-b border-[#1E1E1E]">
+              <span className="text-[#A1A1A1]">Reference ID</span>
+              <span className="font-mono text-white font-medium">{booking.id}</span>
             </div>
-
             <div className="flex justify-between items-center">
-              <span className="text-gray-400">Venue</span>
-              <span className="font-bold text-white text-right">{venue?.name || booking.venueId}</span>
+              <span className="text-[#A1A1A1]">Venue</span>
+              <span className="font-semibold text-white">{venue?.name || booking.venueId}</span>
             </div>
-
             <div className="flex justify-between items-center">
-              <span className="text-gray-400">Court</span>
-              <span className="font-bold text-gray-200">{court?.name || booking.courtId}</span>
+              <span className="text-[#A1A1A1]">Court</span>
+              <span className="text-white">{court?.name || booking.courtId}</span>
             </div>
-
             <div className="flex justify-between items-center">
-              <span className="text-gray-400">Date & Slot</span>
-              <span className="font-bold text-white">
-                {booking.bookingDate} · {slot?.label || booking.slotId}
-              </span>
+              <span className="text-[#A1A1A1]">Slot</span>
+              <span className="text-[#F5B301] font-medium">{booking.bookingDate} · {slot?.label || booking.slotId}</span>
             </div>
-
-            <div className="flex justify-between items-baseline pt-3 border-t border-white/10">
-              <span className="text-gray-400 font-semibold">Total Paid</span>
-              <span className="text-xl font-black text-emerald-400">
+            <div className="flex justify-between items-baseline pt-2 border-t border-[#1E1E1E]">
+              <span className="text-[#A1A1A1]">Amount Paid</span>
+              <span className="text-lg font-bold text-emerald-400">
                 {formatCurrency(booking.total, booking.currency)}
               </span>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex gap-3">
             <Link
               href="/book"
-              className="flex-1 text-center rounded-full bg-white/10 hover:bg-white/20 border border-white/15 px-6 py-3.5 text-sm font-semibold text-white transition"
+              className="flex-1 text-center rounded-[10px] border border-[#2A2A2A] hover:border-[#3A3A3A] py-3 text-xs font-semibold text-white transition-colors"
             >
-              Book Another Slot
+              Book Another
             </Link>
             <Link
               href="/"
-              className="flex-1 inline-flex items-center justify-center text-center rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-neutral-950 font-bold px-6 py-3.5 text-sm transition hover:brightness-110 shadow-lg"
+              className="flex-1 text-center rounded-[10px] bg-[#F5B301] hover:bg-[#e0a400] text-black font-semibold py-3 text-xs transition-colors"
             >
-              Return to Home
-              <ArrowRight className="w-4 h-4 ml-1.5" />
+              Home
             </Link>
           </div>
         </div>

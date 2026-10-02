@@ -1,73 +1,58 @@
-"use client";
+import { redirect } from "next/navigation";
+import { getCurrentUser } from "@/lib/session";
+import { getMembershipRequests } from "@/lib/store";
+import { MembershipForm } from "@/components/membership-form";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import { SectionTitle } from "@/components/section-title";
-import { Card } from "@/components/ui/card";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
+export default async function MembershipPage() {
+  const user = await getCurrentUser();
 
-export default function MembershipPage() {
-  const router = useRouter();
-  const [reason, setReason] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  async function submitRequest(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setLoading(true);
-
-    try {
-      const response = await fetch("/api/membership/request", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ reason }),
-      });
-
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.error ?? "Failed to submit request");
-      }
-
-      toast.success("Membership request submitted");
-      setReason("");
-      router.refresh();
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Unexpected error");
-    } finally {
-      setLoading(false);
-    }
+  if (!user) {
+    redirect("/login?redirect=/membership");
   }
 
-  return (
-    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
-      <SectionTitle
-        title="Membership Request"
-        subtitle="Ask admin for premium membership to unlock member-only slots and discounts."
-      />
+  const requests = await getMembershipRequests();
+  const existingPending = requests.find(
+    (r) => r.userId === user.id && r.status === "pending"
+  );
 
-      <Card>
-        <form className="space-y-4" onSubmit={submitRequest}>
-          <div>
-            <label htmlFor="reason" className="mb-1 block text-sm text-[var(--muted-foreground)]">
-              Why do you want membership?
-            </label>
-            <Textarea
-              id="reason"
-              value={reason}
-              onChange={(event) => setReason(event.target.value)}
-              placeholder="Tell us your usage frequency, preferred slots, and sports goals..."
-              minLength={10}
-              maxLength={300}
-              rows={5}
-              required
-            />
+  return (
+    <div className="min-h-screen bg-[#0B0B0B] text-white py-16 px-4 sm:px-6">
+      <div className="mx-auto max-w-2xl">
+        <div className="mb-8">
+          <span className="text-xs uppercase font-bold tracking-wider text-[#F5B301]">
+            Player Tier Upgrade
+          </span>
+          <h1 className="text-3xl font-bold text-white mt-1">Apply for Equinox Membership</h1>
+          <p className="text-sm text-[#A1A1A1] mt-2">
+            Approved members unlock prime morning & evening slots and receive up to 20% discount on every court reservation.
+          </p>
+        </div>
+
+        <div className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-8 space-y-6">
+          <div className="flex items-center justify-between pb-4 border-b border-[#1E1E1E] text-xs">
+            <div>
+              <span className="text-[#A1A1A1]">Current Status:</span>
+              <p className="font-bold text-white uppercase mt-0.5">{user.membershipStatus}</p>
+            </div>
+            <div>
+              <span className="text-[#A1A1A1]">Account Email:</span>
+              <p className="font-mono text-white mt-0.5">{user.email}</p>
+            </div>
           </div>
-          <Button disabled={loading} type="submit">
-            {loading ? "Submitting..." : "Submit Request"}
-          </Button>
-        </form>
-      </Card>
+
+          {user.membershipStatus === "approved" ? (
+            <div className="rounded-[10px] bg-emerald-500/10 border border-emerald-500/30 p-4 text-emerald-400 text-xs">
+              You are an active approved member. You already have priority access to all member-exclusive slots and automated discounts.
+            </div>
+          ) : existingPending ? (
+            <div className="rounded-[10px] bg-[#F5B301]/10 border border-[#F5B301]/30 p-4 text-[#F5B301] text-xs">
+              Your membership application is currently under admin review. You will be notified once processed.
+            </div>
+          ) : (
+            <MembershipForm />
+          )}
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-﻿import { redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/session";
 import { getCommunityPosts, getCommunityComments } from "@/lib/store";
 import { CommunityFeed } from "@/components/community-feed";
@@ -16,14 +16,14 @@ export default async function CommunityPage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-slate-50 py-12">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <span className="text-amber-400 font-bold uppercase tracking-wider text-xs">
-            Community Lounge
+    <div className="min-h-screen bg-[#0B0B0B] text-white py-14 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-3xl">
+        <div className="mb-10">
+          <span className="text-xs uppercase font-bold tracking-wider text-[#F5B301]">
+            Player Network
           </span>
-          <h1 className="text-3xl font-extrabold text-white mt-1">Player Discussions & Matchups</h1>
-          <p className="text-gray-400 text-sm mt-1">
+          <h1 className="text-3xl font-bold text-white mt-1">Community Discussions</h1>
+          <p className="text-sm text-[#A1A1A1] mt-1">
             Connect with paddle and football players, coordinate practice sessions, and share club reviews.
           </p>
         </div>

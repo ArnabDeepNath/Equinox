@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -25,9 +25,14 @@ export function Nav({ user }: NavProps) {
       } catch (err) {
         console.warn("Firebase signout notice:", err);
       }
-      await fetch("/api/auth/logout", { credentials: "same-origin" });
-      router.push("/");
-      router.refresh();
+      await fetch("/api/auth/logout", {
+        method: "POST",
+        credentials: "same-origin",
+      });
+      // Clear cookie client-side as well to guarantee immediate drop
+      document.cookie = "equinox_user=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      // Force reload to cleanly refresh server state without leaving current domain
+      window.location.href = "/";
     } catch (err) {
       console.error("Logout error:", err);
       window.location.href = "/";
@@ -37,53 +42,54 @@ export function Nav({ user }: NavProps) {
   }
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-neutral-950/80 backdrop-blur-md">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
+    <nav className="sticky top-0 z-50 w-full h-[72px] border-b border-[#1A1A1A] bg-[#0B0B0B]/95 backdrop-blur-md">
+      <div className="mx-auto max-w-7xl h-full px-4 sm:px-6 lg:px-8">
+        <div className="flex h-full items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0 flex items-center gap-2.5 cursor-pointer">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-md shadow-orange-500/20">
-              <Dumbbell className="w-5 h-5 text-neutral-950" />
+          <Link href="/" className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-[#F5B301] flex items-center justify-center font-black text-black">
+              <Dumbbell className="w-4 h-4 text-black" />
             </div>
-            <span className="text-xl font-black tracking-tight text-white uppercase">
-              Equinox <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">Sports</span>
+            <span className="text-lg font-bold tracking-tight text-white">
+              Equinox <span className="text-[#F5B301]">Sports</span>
             </span>
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:block flex-1 mx-8">
-            <div className="flex items-center space-x-8 justify-center">
-              <Link href="/venues" className="text-sm font-medium text-gray-300 transition-colors hover:text-amber-400">
-                Venues
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-[#A1A1A1]">
+            <Link href="/venues" className="transition-colors hover:text-white">
+              Venues
+            </Link>
+            <Link href="/#sports" className="transition-colors hover:text-white">
+              Sports
+            </Link>
+            <Link href="/#pricing" className="transition-colors hover:text-white">
+              Pricing
+            </Link>
+            <Link href="/community" className="transition-colors hover:text-white">
+              Community
+            </Link>
+            {user?.role === "admin" && (
+              <Link
+                href="/admin"
+                className="inline-flex items-center gap-1.5 font-semibold text-[#F5B301] hover:underline"
+              >
+                <Shield className="w-4 h-4" />
+                Admin
               </Link>
-              <Link href="/book" className="text-sm font-medium text-gray-300 transition-colors hover:text-amber-400">
-                Book Slots
-              </Link>
-              <Link href="/community" className="text-sm font-medium text-gray-300 transition-colors hover:text-amber-400">
-                Community
-              </Link>
-              {user?.role === "admin" && (
-                <Link
-                  href="/admin"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 transition-colors hover:text-amber-300"
-                >
-                  <Shield className="w-4 h-4" />
-                  Admin Panel
-                </Link>
-              )}
-            </div>
+            )}
           </div>
 
           {/* Right Action / Auth Buttons */}
           <div className="hidden md:flex items-center gap-3">
             {user ? (
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2 bg-neutral-900 border border-white/10 px-3.5 py-1.5 rounded-full">
-                  <UserIcon className="w-4 h-4 text-amber-400" />
-                  <span className="text-sm font-medium text-gray-200">{user.name}</span>
+                <div className="flex items-center gap-2 bg-[#121212] border border-[#1E1E1E] px-3 py-1.5 rounded-lg text-xs">
+                  <UserIcon className="w-3.5 h-3.5 text-[#F5B301]" />
+                  <span className="font-medium text-white">{user.name}</span>
                   {user.membershipStatus === "approved" && (
-                    <span className="text-[10px] uppercase tracking-wider font-bold bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full border border-amber-500/30">
-                      Member
+                    <span className="bg-[#F5B301]/20 text-[#F5B301] px-1.5 py-0.5 rounded text-[10px] font-bold">
+                      MEMBER
                     </span>
                   )}
                 </div>
@@ -91,7 +97,7 @@ export function Nav({ user }: NavProps) {
                   type="button"
                   onClick={handleLogout}
                   disabled={loggingOut}
-                  className="inline-flex items-center gap-1.5 rounded-full bg-white/5 hover:bg-white/10 px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-all border border-white/10 disabled:opacity-50"
+                  className="inline-flex items-center gap-1.5 rounded-[10px] border border-[#2A2A2A] bg-transparent hover:bg-[#1A1A1A] px-3.5 py-2 text-xs font-medium text-[#A1A1A1] hover:text-white transition-colors disabled:opacity-50"
                 >
                   <LogOut className="w-3.5 h-3.5" />
                   {loggingOut ? "Logging out..." : "Logout"}
@@ -100,16 +106,16 @@ export function Nav({ user }: NavProps) {
             ) : (
               <div className="flex items-center gap-3">
                 <Link
-                  href="/join"
-                  className="rounded-full bg-white/5 hover:bg-white/10 px-5 py-2 text-sm font-medium text-white transition-all border border-white/10"
+                  href="/login"
+                  className="rounded-[10px] border border-[#2A2A2A] hover:border-[#3A3A3A] hover:bg-[#1A1A1A] px-4 py-2 text-sm font-medium text-white transition-colors"
                 >
-                  Join as Member
+                  Log In
                 </Link>
                 <Link
-                  href="/login"
-                  className="rounded-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-neutral-950 font-bold px-5 py-2 text-sm transition-all shadow-md shadow-orange-500/20 hover:-translate-y-0.5"
+                  href="/book"
+                  className="rounded-[10px] bg-[#F5B301] hover:bg-[#e0a400] text-black font-semibold px-4 py-2 text-sm transition-colors"
                 >
-                  Already a Member
+                  Book Now
                 </Link>
               </div>
             )}
@@ -119,9 +125,10 @@ export function Nav({ user }: NavProps) {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white p-2 rounded-lg bg-white/5"
+              className="text-[#A1A1A1] hover:text-white p-2 rounded-lg bg-[#141414]"
+              aria-label="Toggle menu"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
@@ -129,25 +136,32 @@ export function Nav({ user }: NavProps) {
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="md:hidden border-t border-white/10 bg-neutral-950 px-4 py-6 space-y-4">
+        <div className="md:hidden border-b border-[#1A1A1A] bg-[#0B0B0B] px-4 py-6 space-y-4">
           <Link
             href="/venues"
             onClick={() => setIsOpen(false)}
-            className="block text-base font-medium text-gray-300 hover:text-amber-400"
+            className="block text-sm font-medium text-[#A1A1A1] hover:text-white"
           >
             Venues
           </Link>
           <Link
-            href="/book"
+            href="/#sports"
             onClick={() => setIsOpen(false)}
-            className="block text-base font-medium text-gray-300 hover:text-amber-400"
+            className="block text-sm font-medium text-[#A1A1A1] hover:text-white"
           >
-            Book Slots
+            Sports
+          </Link>
+          <Link
+            href="/#pricing"
+            onClick={() => setIsOpen(false)}
+            className="block text-sm font-medium text-[#A1A1A1] hover:text-white"
+          >
+            Pricing
           </Link>
           <Link
             href="/community"
             onClick={() => setIsOpen(false)}
-            className="block text-base font-medium text-gray-300 hover:text-amber-400"
+            className="block text-sm font-medium text-[#A1A1A1] hover:text-white"
           >
             Community
           </Link>
@@ -155,42 +169,42 @@ export function Nav({ user }: NavProps) {
             <Link
               href="/admin"
               onClick={() => setIsOpen(false)}
-              className="block text-base font-semibold text-amber-400"
+              className="block text-sm font-semibold text-[#F5B301]"
             >
               Admin Panel
             </Link>
           )}
 
-          <div className="pt-4 border-t border-white/10">
+          <div className="pt-4 border-t border-[#1E1E1E]">
             {user ? (
-              <div className="flex flex-col gap-3">
-                <div className="text-sm text-gray-400">
+              <div className="space-y-3">
+                <div className="text-xs text-[#A1A1A1]">
                   Signed in as <span className="font-semibold text-white">{user.name}</span>
                 </div>
                 <button
                   type="button"
                   onClick={handleLogout}
                   disabled={loggingOut}
-                  className="w-full text-center rounded-full bg-white/10 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/20 transition disabled:opacity-50"
+                  className="w-full rounded-[10px] bg-[#1A1A1A] py-2.5 text-xs font-medium text-white"
                 >
                   {loggingOut ? "Logging out..." : "Logout"}
                 </button>
               </div>
             ) : (
-              <div className="flex flex-col gap-2">
-                <Link
-                  href="/join"
-                  onClick={() => setIsOpen(false)}
-                  className="text-center rounded-full bg-white/5 border border-white/10 px-4 py-2.5 text-sm font-medium text-white"
-                >
-                  Join as Member
-                </Link>
+              <div className="grid grid-cols-2 gap-2">
                 <Link
                   href="/login"
                   onClick={() => setIsOpen(false)}
-                  className="text-center rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-neutral-950 font-bold px-4 py-2.5 text-sm"
+                  className="text-center rounded-[10px] border border-[#2A2A2A] py-2.5 text-xs font-medium text-white"
                 >
-                  Already a Member
+                  Log In
+                </Link>
+                <Link
+                  href="/book"
+                  onClick={() => setIsOpen(false)}
+                  className="text-center rounded-[10px] bg-[#F5B301] text-black font-semibold py-2.5 text-xs"
+                >
+                  Book Now
                 </Link>
               </div>
             )}

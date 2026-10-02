@@ -1,91 +1,107 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Calendar, Clock, Globe } from "lucide-react";
-import { getVenues, getGames } from "@/lib/store";
+import { MapPin, Clock, Globe, Calendar } from "lucide-react";
+import { getVenues, getGames, getCourts, getSlots } from "@/lib/store";
 
 export default async function VenuesPage() {
-  const [venues, games] = await Promise.all([getVenues(), getGames()]);
+  const [venues, games, courts, slots] = await Promise.all([
+    getVenues(),
+    getGames(),
+    getCourts(),
+    getSlots(),
+  ]);
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-slate-50 py-12">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 text-center max-w-2xl mx-auto">
-          <span className="text-amber-400 font-bold uppercase tracking-wider text-xs">
-            Global Facilities
+    <div className="min-h-screen bg-[#0B0B0B] text-white py-16 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 max-w-xl">
+          <span className="text-xs uppercase font-bold tracking-wider text-[#F5B301]">
+            Verified Facilities
           </span>
-          <h1 className="text-4xl font-extrabold text-white mt-2 tracking-tight sm:text-5xl">
-            Certified Venues & Arenas
+          <h1 className="text-3xl sm:text-4xl font-bold text-white mt-1">
+            Sports Venues in Your City
           </h1>
-          <p className="text-gray-400 mt-3 text-base">
-            World-class venues equipped with professional LED lighting, international standard turf, and exclusive membership slots.
+          <p className="text-sm text-[#A1A1A1] mt-2">
+            Explore club courts, real-time hourly rates, and book slots directly.
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
           {venues.map((venue) => {
             const venueGames = games.filter((g) => g.venueIds.includes(venue.id));
+            const venueCourts = courts.filter((c) => c.venueId === venue.id);
+            const minPrice = venueCourts.length
+              ? Math.min(...venueCourts.map((c) => c.basePrice))
+              : 1000;
+            const venueSlots = slots.filter((s) =>
+              venueCourts.some((c) => c.id === s.courtId)
+            );
 
             return (
               <div
                 key={venue.id}
-                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-neutral-900/40 backdrop-blur-sm transition-all duration-300 hover:border-amber-500/50 hover:shadow-2xl"
+                className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] overflow-hidden flex flex-col justify-between hover:border-[#2A2A2A] transition-colors"
               >
-                <div className="relative h-64 w-full overflow-hidden">
+                <div className="relative h-64 w-full">
                   <Image
                     src={venue.image}
                     alt={venue.name}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/40 to-transparent"></div>
-                  <span className="absolute top-4 right-4 bg-amber-500/90 text-neutral-950 font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider">
+                  <span className="absolute top-4 right-4 bg-[#0B0B0B]/90 text-white text-xs font-semibold px-3 py-1 rounded">
                     {venue.city}
                   </span>
                 </div>
 
-                <div className="p-8 space-y-6">
+                <div className="p-6 space-y-5 flex-1 flex flex-col justify-between">
                   <div>
-                    <h2 className="text-2xl font-black text-white">{venue.name}</h2>
-                    <div className="flex items-center gap-2 text-gray-300 text-sm mt-1.5">
-                      <MapPin className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                    <h2 className="text-2xl font-bold text-white">{venue.name}</h2>
+                    <p className="text-xs text-[#A1A1A1] mt-1 flex items-center gap-1">
+                      <MapPin className="w-3.5 h-3.5 text-[#F5B301]" />
                       {venue.address}
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4 border-y border-white/10 py-4 text-xs">
-                    <div className="flex items-center gap-2 text-gray-400">
-                      <Clock className="w-4 h-4 text-amber-400" />
-                      <span>{venue.timezone}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-400">
-                      <Globe className="w-4 h-4 text-amber-400" />
-                      <span>Currency: <strong className="text-white">{venue.currency}</strong></span>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                      Available Sports at this Venue
                     </p>
-                    <div className="flex flex-wrap gap-2">
-                      {venueGames.map((game) => (
-                        <span
-                          key={game.id}
-                          className="rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-300"
-                        >
-                          {game.name}
-                        </span>
-                      ))}
+
+                    <div className="grid grid-cols-2 gap-4 border-y border-[#1E1E1E] my-4 py-3 text-xs text-[#A1A1A1]">
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-[#F5B301]" />
+                        <span>{venue.timezone}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Globe className="w-3.5 h-3.5 text-[#F5B301]" />
+                        <span>Currency: <strong className="text-white">{venue.currency}</strong></span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <p className="text-[11px] font-semibold text-[#A1A1A1] uppercase tracking-wider">
+                        Available Sports
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {venueGames.map((game) => (
+                          <span
+                            key={game.id}
+                            className="rounded-full border border-[#2A2A2A] bg-[#181818] px-3 py-1 text-xs text-white"
+                          >
+                            {game.name}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
-                  <div className="pt-2">
+                  <div className="pt-4 border-t border-[#1E1E1E] flex items-center justify-between">
+                    <div>
+                      <span className="text-[11px] text-[#A1A1A1]">From</span>
+                      <p className="text-lg font-bold text-white">₹{minPrice} <span className="text-xs font-normal text-[#A1A1A1]">/ hr</span></p>
+                    </div>
+
                     <Link
                       href={`/book?venueId=${venue.id}`}
-                      className="w-full inline-flex items-center justify-center rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-neutral-950 font-bold px-6 py-3.5 text-sm transition hover:brightness-110 shadow-lg shadow-orange-500/20"
+                      className="rounded-[10px] bg-[#F5B301] hover:bg-[#e0a400] text-black font-semibold px-5 py-2.5 text-xs uppercase tracking-wider transition-colors inline-flex items-center gap-1.5"
                     >
-                      <Calendar className="w-4 h-4 mr-2" />
-                      Book Slots at {venue.name}
+                      <Calendar className="w-3.5 h-3.5" />
+                      Book Now
                     </Link>
                   </div>
                 </div>
