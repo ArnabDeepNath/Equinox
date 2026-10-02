@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import { requireAdmin } from "@/lib/session";
 import { getVenues, getGames, getCourts } from "@/lib/store";
 import { AdminCatalogManager } from "@/components/admin-catalog-manager";

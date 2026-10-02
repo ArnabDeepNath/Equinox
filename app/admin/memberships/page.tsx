@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 ﻿import { requireAdmin } from "@/lib/session";
 import { getMembershipRequests } from "@/lib/store";
 import { AdminMembershipActions } from "@/components/admin-membership-actions";

@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 ﻿import { requireAdmin } from "@/lib/session";
 import { getAuditLogs } from "@/lib/store";
 import { Shield, FileText } from "lucide-react";
