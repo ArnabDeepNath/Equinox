@@ -14,7 +14,7 @@ export default async function AdminMembershipPage() {
     <div className="min-h-screen bg-neutral-950 text-slate-50 py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10">
-          <span className="text-amber-400 font-bold uppercase tracking-wider text-xs">
+          <span className="text-[#E5C158] font-bold uppercase tracking-wider text-xs">
             Approval Queue
           </span>
           <h1 className="text-3xl font-extrabold text-white mt-1">Membership Requests</h1>
@@ -35,12 +35,12 @@ export default async function AdminMembershipPage() {
               return (
                 <div
                   key={request.id}
-                  className="rounded-3xl border border-white/10 bg-neutral-900/50 p-6 space-y-4 hover:border-amber-500/30 transition"
+                  className="rounded-3xl border border-white/10 bg-neutral-900/50 p-6 space-y-4 hover:border-[#E5C158]/30 transition"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
-                        <User className="w-5 h-5 text-amber-400" />
+                      <div className="w-10 h-10 rounded-full bg-[#E5C158]/10 border border-[#E5C158]/20 flex items-center justify-center">
+                        <User className="w-5 h-5 text-[#E5C158]" />
                       </div>
                       <div>
                         <p className="font-bold text-white text-base">User ID: {request.userId}</p>
@@ -52,7 +52,7 @@ export default async function AdminMembershipPage() {
 
                     <div>
                       {request.status === "approved" ? (
-                        <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-3 py-1 text-xs font-bold uppercase tracking-wider">
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E5C158]/10 text-[#E5C158] border border-[#E5C158]/30 px-3 py-1 text-xs font-bold uppercase tracking-wider">
                           <CheckCircle className="w-3.5 h-3.5" />
                           Approved
                         </span>
@@ -62,7 +62,7 @@ export default async function AdminMembershipPage() {
                           Rejected
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 px-3 py-1 text-xs font-bold uppercase tracking-wider">
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E5C158]/10 text-[#E5C158] border border-[#E5C158]/30 px-3 py-1 text-xs font-bold uppercase tracking-wider">
                           <Clock className="w-3.5 h-3.5" />
                           Pending Review
                         </span>

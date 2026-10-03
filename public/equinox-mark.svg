@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF6D1" stop-opacity="1"/>
+      <stop offset="25%" stop-color="#FFD700" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#D4AF37" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ringGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBE8A6"/>
+      <stop offset="30%" stop-color="#E5C158"/>
+      <stop offset="50%" stop-color="#B98D29"/>
+      <stop offset="75%" stop-color="#DFB743"/>
+      <stop offset="100%" stop-color="#8C6718"/>
+    </linearGradient>
+    <linearGradient id="needleGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF4C2"/>
+      <stop offset="20%" stop-color="#E5C158"/>
+      <stop offset="50%" stop-color="#FFFFFF"/>
+      <stop offset="80%" stop-color="#E5C158"/>
+      <stop offset="100%" stop-color="#8C6718"/>
+    </linearGradient>
+    <filter id="flare" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Ambient Golden Glow behind center -->
+  <circle cx="50" cy="50" r="28" fill="url(#coreGlow)" opacity="0.65"/>
+
+  <!-- Circular Ring -->
+  <circle cx="50" cy="50" r="33" stroke="url(#ringGold)" stroke-width="3.8" fill="none"/>
+  <!-- Inner Ring rim highlight -->
+  <circle cx="50" cy="50" r="31.2" stroke="#FFF4C2" stroke-width="0.6" stroke-opacity="0.4" fill="none"/>
+
+  <!-- Vertical Needle Spire (pointed diamond / lance) -->
+  <polygon points="50,5 51.8,50 50,95 48.2,50" fill="url(#needleGold)"/>
+
+  <!-- Horizontal Sunburst Glint at center -->
+  <polygon points="24,50 50,51.2 76,50 50,48.8" fill="#FFE899" opacity="0.8"/>
+
+  <!-- Brilliant Center Star Flare -->
+  <circle cx="50" cy="50" r="4" fill="#FFFFFF" filter="url(#flare)"/>
+  <circle cx="50" cy="50" r="2" fill="#FFFFFF"/>
+</svg>

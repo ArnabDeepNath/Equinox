@@ -51,7 +51,7 @@ export function AdminBookingActions({ bookingId }: Props) {
         type="button"
         disabled={loading !== null}
         onClick={() => handleDecision("approved")}
-        className="inline-flex items-center gap-1.5 rounded-[8px] bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-3 py-1.5 text-xs transition-colors disabled:opacity-50"
+        className="inline-flex items-center gap-1.5 rounded-[8px] bg-[#E5C158] hover:bg-[#F6E7B8] text-black font-bold px-3 py-1.5 text-xs transition-colors disabled:opacity-50"
       >
         <Check className="w-3.5 h-3.5" />
         {loading === "approved" ? "Approving..." : "Approve & Email"}

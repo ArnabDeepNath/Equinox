@@ -21,10 +21,10 @@ export default async function AdminBookingsPage() {
   const processedBookings = bookings.filter((b) => b.status !== "pending");
 
   return (
-    <div className="min-h-screen bg-[#0B0B0B] text-white py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#060606] text-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-10">
         <div>
-          <span className="text-xs uppercase font-bold tracking-wider text-[#F5B301]">
+          <span className="text-xs uppercase font-bold tracking-wider text-[#E5C158]">
             Reservations Control
           </span>
           <h1 className="text-3xl font-bold text-white mt-1">Bookings Register & Approvals</h1>
@@ -35,18 +35,18 @@ export default async function AdminBookingsPage() {
 
         {/* 1. Pending Approvals Queue */}
         <div className="space-y-4">
-          <div className="flex items-center justify-between border-b border-[#1E1E1E] pb-3">
+          <div className="flex items-center justify-between border-b border-[#1A1813] pb-3">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#F5B301] animate-pulse"></span>
+              <span className="w-2 h-2 rounded-full bg-[#E5C158] animate-pulse"></span>
               <h2 className="text-lg font-bold text-white">Pending Approval Queue</h2>
             </div>
-            <span className="rounded-full bg-[#F5B301]/10 text-[#F5B301] border border-[#F5B301]/30 text-xs px-2.5 py-0.5 font-bold">
+            <span className="rounded-full bg-[#E5C158]/10 text-[#E5C158] border border-[#E5C158]/30 text-xs px-2.5 py-0.5 font-bold">
               {pendingBookings.length} Awaiting Review
             </span>
           </div>
 
           {pendingBookings.length === 0 ? (
-            <div className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-8 text-center text-[#A1A1A1] text-xs">
+            <div className="rounded-[16px] bg-[#0D0D0D] border border-[#1A1813] p-8 text-center text-[#A1A1A1] text-xs">
               No pending booking requests right now. New checkout requests will land here for your decision.
             </div>
           ) : (
@@ -59,11 +59,11 @@ export default async function AdminBookingsPage() {
                 return (
                   <div
                     key={b.id}
-                    className="rounded-[16px] bg-[#121212] border border-[#F5B301]/40 p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6"
+                    className="rounded-[16px] bg-[#0D0D0D] border border-[#E5C158]/40 p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6"
                   >
                     <div className="space-y-1.5">
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-xs bg-[#1A1A1A] text-[#F5B301] px-2.5 py-0.5 rounded font-bold">
+                        <span className="font-mono text-xs bg-[#141414] text-[#E5C158] px-2.5 py-0.5 rounded font-bold">
                           {b.id}
                         </span>
                         <span className="text-[11px] text-[#A1A1A1]">
@@ -79,7 +79,7 @@ export default async function AdminBookingsPage() {
                     <div className="flex flex-wrap items-center gap-6 text-xs">
                       <div>
                         <span className="text-[#A1A1A1] flex items-center gap-1">
-                          <Calendar className="w-3.5 h-3.5 text-[#F5B301]" />
+                          <Calendar className="w-3.5 h-3.5 text-[#E5C158]" />
                           Date
                         </span>
                         <p className="font-semibold text-white mt-0.5">{b.bookingDate}</p>
@@ -87,10 +87,10 @@ export default async function AdminBookingsPage() {
 
                       <div>
                         <span className="text-[#A1A1A1] flex items-center gap-1">
-                          <Clock className="w-3.5 h-3.5 text-[#F5B301]" />
+                          <Clock className="w-3.5 h-3.5 text-[#E5C158]" />
                           Slot Window
                         </span>
-                        <p className="font-semibold text-[#F5B301] mt-0.5">{slot?.label || b.slotId}</p>
+                        <p className="font-semibold text-[#E5C158] mt-0.5">{slot?.label || b.slotId}</p>
                       </div>
 
                       <div>
@@ -113,12 +113,12 @@ export default async function AdminBookingsPage() {
 
         {/* 2. Processed History */}
         <div className="space-y-4 pt-6">
-          <div className="border-b border-[#1E1E1E] pb-3">
+          <div className="border-b border-[#1A1813] pb-3">
             <h2 className="text-lg font-bold text-white">Processed Bookings History</h2>
           </div>
 
           {processedBookings.length === 0 ? (
-            <div className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-6 text-center text-[#A1A1A1] text-xs">
+            <div className="rounded-[16px] bg-[#0D0D0D] border border-[#1A1813] p-6 text-center text-[#A1A1A1] text-xs">
               No historical decisions yet.
             </div>
           ) : (
@@ -132,7 +132,7 @@ export default async function AdminBookingsPage() {
                 return (
                   <div
                     key={b.id}
-                    className="rounded-[12px] bg-[#121212] border border-[#1E1E1E] p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs"
+                    className="rounded-[12px] bg-[#0D0D0D] border border-[#1A1813] p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs"
                   >
                     <div>
                       <div className="flex items-center gap-2">
@@ -153,7 +153,7 @@ export default async function AdminBookingsPage() {
                       </span>
 
                       {isConfirmed ? (
-                        <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 font-bold text-[10px] uppercase">
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E5C158]/10 text-[#E5C158] border border-[#E5C158]/20 px-3 py-1 font-bold text-[10px] uppercase">
                           <CheckCircle2 className="w-3.5 h-3.5" />
                           Confirmed
                         </span>

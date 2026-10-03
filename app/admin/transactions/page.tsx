@@ -14,7 +14,7 @@ export default async function AdminTransactionsPage() {
     <div className="min-h-screen bg-neutral-950 text-slate-50 py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10">
-          <span className="text-amber-400 font-bold uppercase tracking-wider text-xs">
+          <span className="text-[#E5C158] font-bold uppercase tracking-wider text-xs">
             Financial Ledger
           </span>
           <h1 className="text-3xl font-extrabold text-white mt-1">Payment Transactions</h1>
@@ -35,8 +35,8 @@ export default async function AdminTransactionsPage() {
                 className="rounded-3xl border border-white/10 bg-neutral-900/50 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-amber-500/40 transition"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center flex-shrink-0">
-                    <CreditCard className="w-6 h-6 text-amber-400" />
+                  <div className="w-12 h-12 rounded-2xl bg-[#E5C158]/10 border border-[#E5C158]/20 flex items-center justify-center flex-shrink-0">
+                    <CreditCard className="w-6 h-6 text-[#E5C158]" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
@@ -53,7 +53,7 @@ export default async function AdminTransactionsPage() {
 
                 <div className="flex items-center gap-6">
                   <div className="text-right">
-                    <p className="text-xl font-black text-amber-400">
+                    <p className="text-xl font-black text-[#E5C158]">
                       {formatCurrency(t.amount, t.currency)}
                     </p>
                     <p className="text-[11px] uppercase tracking-wider text-gray-500">
@@ -61,7 +61,7 @@ export default async function AdminTransactionsPage() {
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-1.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
+                  <div className="flex items-center gap-1.5 bg-[#E5C158]/10 text-[#E5C158] border border-[#E5C158]/20 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
                     <CheckCircle2 className="w-4 h-4" />
                     {t.status}
                   </div>

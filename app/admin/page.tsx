@@ -25,7 +25,7 @@ export default async function AdminPage() {
     <div className="min-h-screen bg-neutral-950 text-slate-50 py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10">
-          <span className="text-amber-400 font-bold uppercase tracking-wider text-xs">
+          <span className="text-[#E5C158] font-bold uppercase tracking-wider text-xs">
             Equinox Management
           </span>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">
@@ -41,7 +41,7 @@ export default async function AdminPage() {
           <div className="rounded-3xl border border-white/10 bg-neutral-900/60 p-6 backdrop-blur-md">
             <div className="flex items-center justify-between text-gray-400 mb-3">
               <span className="text-xs font-semibold uppercase tracking-wider">Registered Users</span>
-              <Users className="w-5 h-5 text-amber-400" />
+              <Users className="w-5 h-5 text-[#E5C158]" />
             </div>
             <p className="text-3xl font-black text-white">{metrics.totalUsers}</p>
             <p className="text-xs text-gray-500 mt-1">Multi-role active accounts</p>
@@ -50,28 +50,28 @@ export default async function AdminPage() {
           <div className="rounded-3xl border border-white/10 bg-neutral-900/60 p-6 backdrop-blur-md">
             <div className="flex items-center justify-between text-gray-400 mb-3">
               <span className="text-xs font-semibold uppercase tracking-wider">Confirmed Bookings</span>
-              <CalendarCheck className="w-5 h-5 text-emerald-400" />
+              <CalendarCheck className="w-5 h-5 text-[#E5C158]" />
             </div>
             <p className="text-3xl font-black text-white">{metrics.confirmedBookings}</p>
-            <p className="text-xs text-emerald-400 mt-1">Total {metrics.totalBookings} reservation intents</p>
+            <p className="text-xs text-gray-500 mt-1">Total {metrics.totalBookings} reservation intents</p>
           </div>
 
           <div className="rounded-3xl border border-white/10 bg-neutral-900/60 p-6 backdrop-blur-md">
             <div className="flex items-center justify-between text-gray-400 mb-3">
               <span className="text-xs font-semibold uppercase tracking-wider">Gross Booking Value</span>
-              <TrendingUp className="w-5 h-5 text-amber-400" />
+              <TrendingUp className="w-5 h-5 text-[#E5C158]" />
             </div>
-            <p className="text-3xl font-black text-amber-400">₹{metrics.revenue.toLocaleString("en-IN")}</p>
+            <p className="text-3xl font-black text-[#E5C158]">₹{metrics.revenue.toLocaleString("en-IN")}</p>
             <p className="text-xs text-gray-500 mt-1">Settled in INR across venues</p>
           </div>
 
           <div className="rounded-3xl border border-white/10 bg-neutral-900/60 p-6 backdrop-blur-md">
             <div className="flex items-center justify-between text-gray-400 mb-3">
               <span className="text-xs font-semibold uppercase tracking-wider">Pending Memberships</span>
-              <Clock className="w-5 h-5 text-orange-400" />
+              <Clock className="w-5 h-5 text-[#E5C158]" />
             </div>
             <p className="text-3xl font-black text-white">{metrics.pendingMemberships}</p>
-            <p className="text-xs text-orange-400 mt-1">Requires approval review</p>
+            <p className="text-xs text-[#E5C158] mt-1">Requires approval review</p>
           </div>
         </div>
 
@@ -79,13 +79,13 @@ export default async function AdminPage() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <Link
             href="/admin/memberships"
-            className="group rounded-3xl border border-white/10 bg-neutral-900/40 p-6 transition-all hover:border-amber-500/50 hover:bg-neutral-900/80"
+            className="group rounded-3xl border border-white/10 bg-neutral-900/40 p-6 transition-all hover:border-[#E5C158]/50 hover:bg-neutral-900/80"
           >
             <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
-                <Shield className="w-6 h-6 text-amber-400" />
+              <div className="w-12 h-12 rounded-2xl bg-[#E5C158]/10 border border-[#E5C158]/20 flex items-center justify-center">
+                <Shield className="w-6 h-6 text-[#E5C158]" />
               </div>
-              <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-amber-400 transition" />
+              <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-[#E5C158] transition" />
             </div>
             <h3 className="text-xl font-bold text-white mb-1">Membership Requests</h3>
             <p className="text-xs text-gray-400">
@@ -95,13 +95,13 @@ export default async function AdminPage() {
 
           <Link
             href="/admin/bookings"
-            className="group rounded-3xl border border-white/10 bg-neutral-900/40 p-6 transition-all hover:border-amber-500/50 hover:bg-neutral-900/80"
+            className="group rounded-3xl border border-white/10 bg-neutral-900/40 p-6 transition-all hover:border-[#E5C158]/50 hover:bg-neutral-900/80"
           >
             <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
-                <CalendarCheck className="w-6 h-6 text-emerald-400" />
+              <div className="w-12 h-12 rounded-2xl bg-[#E5C158]/10 border border-[#E5C158]/20 flex items-center justify-center">
+                <CalendarCheck className="w-6 h-6 text-[#E5C158]" />
               </div>
-              <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-amber-400 transition" />
+              <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-[#E5C158] transition" />
             </div>
             <h3 className="text-xl font-bold text-white mb-1">Bookings Register</h3>
             <p className="text-xs text-gray-400">
@@ -111,13 +111,13 @@ export default async function AdminPage() {
 
           <Link
             href="/admin/transactions"
-            className="group rounded-3xl border border-white/10 bg-neutral-900/40 p-6 transition-all hover:border-amber-500/50 hover:bg-neutral-900/80"
+            className="group rounded-3xl border border-white/10 bg-neutral-900/40 p-6 transition-all hover:border-[#E5C158]/50 hover:bg-neutral-900/80"
           >
             <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
-                <CreditCard className="w-6 h-6 text-blue-400" />
+              <div className="w-12 h-12 rounded-2xl bg-[#E5C158]/10 border border-[#E5C158]/20 flex items-center justify-center">
+                <CreditCard className="w-6 h-6 text-[#E5C158]" />
               </div>
-              <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-amber-400 transition" />
+              <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-[#E5C158] transition" />
             </div>
             <h3 className="text-xl font-bold text-white mb-1">Payment Transactions</h3>
             <p className="text-xs text-gray-400">
@@ -127,13 +127,13 @@ export default async function AdminPage() {
 
           <Link
             href="/admin/catalog"
-            className="group rounded-3xl border border-white/10 bg-neutral-900/40 p-6 transition-all hover:border-amber-500/50 hover:bg-neutral-900/80"
+            className="group rounded-3xl border border-white/10 bg-neutral-900/40 p-6 transition-all hover:border-[#E5C158]/50 hover:bg-neutral-900/80"
           >
             <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
-                <Layers className="w-6 h-6 text-purple-400" />
+              <div className="w-12 h-12 rounded-2xl bg-[#E5C158]/10 border border-[#E5C158]/20 flex items-center justify-center">
+                <Layers className="w-6 h-6 text-[#E5C158]" />
               </div>
-              <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-amber-400 transition" />
+              <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-[#E5C158] transition" />
             </div>
             <h3 className="text-xl font-bold text-white mb-1">Catalog Management</h3>
             <p className="text-xs text-gray-400">
@@ -143,13 +143,13 @@ export default async function AdminPage() {
 
           <Link
             href="/admin/audit-logs"
-            className="group rounded-3xl border border-white/10 bg-neutral-900/40 p-6 transition-all hover:border-amber-500/50 hover:bg-neutral-900/80"
+            className="group rounded-3xl border border-white/10 bg-neutral-900/40 p-6 transition-all hover:border-[#E5C158]/50 hover:bg-neutral-900/80"
           >
             <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center">
-                <FileText className="w-6 h-6 text-rose-400" />
+              <div className="w-12 h-12 rounded-2xl bg-[#E5C158]/10 border border-[#E5C158]/20 flex items-center justify-center">
+                <FileText className="w-6 h-6 text-[#E5C158]" />
               </div>
-              <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-amber-400 transition" />
+              <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-[#E5C158] transition" />
             </div>
             <h3 className="text-xl font-bold text-white mb-1">Audit Trail & Logs</h3>
             <p className="text-xs text-gray-400">

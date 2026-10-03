@@ -98,9 +98,9 @@ export function CommunityFeed({
   return (
     <div className="space-y-6">
       {/* Create Post */}
-      <div className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-6 space-y-4">
+      <div className="rounded-[16px] bg-[#0D0D0D] border border-[#1A1813] p-6 space-y-4">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-[#1A1A1A] flex items-center justify-center font-bold text-[#F5B301] text-xs">
+          <div className="w-8 h-8 rounded-full bg-[#141414] flex items-center justify-center font-bold text-[#E5C158] text-xs">
             {user.name.charAt(0).toUpperCase()}
           </div>
           <div>
@@ -114,7 +114,7 @@ export function CommunityFeed({
           onChange={(e) => setContent(e.target.value)}
           placeholder="Looking for paddle doubles partners this Saturday in Guwahati? Speak up..."
           rows={3}
-          className="w-full rounded-[10px] border border-[#2A2A2A] bg-[#0E0E0E] p-3 text-sm text-white placeholder-[#555] focus:outline-none focus:border-[#F5B301]"
+          className="w-full rounded-[10px] border border-[#2A2A2A] bg-[#0E0E0E] p-3 text-sm text-white placeholder-[#555] focus:outline-none focus:border-[#E5C158]"
         />
 
         <div className="flex justify-end pt-1">
@@ -122,7 +122,7 @@ export function CommunityFeed({
             type="button"
             disabled={loadingPost}
             onClick={createPost}
-            className="rounded-[10px] bg-[#F5B301] hover:bg-[#e0a400] text-black font-semibold px-5 py-2.5 text-xs transition-colors disabled:opacity-50 inline-flex items-center gap-1.5"
+            className="rounded-[10px] bg-[#E5C158] hover:bg-[#D4AF37] text-black font-semibold px-5 py-2.5 text-xs transition-colors disabled:opacity-50 inline-flex items-center gap-1.5"
           >
             <Send className="w-3.5 h-3.5" />
             {loadingPost ? "Posting..." : "Post to Community"}
@@ -138,11 +138,11 @@ export function CommunityFeed({
           return (
             <div
               key={post.id}
-              className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-6 space-y-4"
+              className="rounded-[16px] bg-[#0D0D0D] border border-[#1A1813] p-6 space-y-4"
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-full bg-[#1A1A1A] flex items-center justify-center text-xs font-semibold text-[#F5B301]">
+                  <div className="w-7 h-7 rounded-full bg-[#141414] flex items-center justify-center text-xs font-semibold text-[#E5C158]">
                     <User className="w-3.5 h-3.5" />
                   </div>
                   <div>
@@ -158,7 +158,7 @@ export function CommunityFeed({
                   onClick={() => likePost(post.id)}
                   className="inline-flex items-center gap-1 rounded-[8px] border border-[#2A2A2A] bg-[#0E0E0E] px-2.5 py-1 text-xs text-[#A1A1A1] hover:text-white transition-colors"
                 >
-                  <Heart className="w-3.5 h-3.5 text-rose-500" />
+                  <Heart className="w-3.5 h-3.5 text-[#E5C158]" />
                   <span>{post.likes}</span>
                 </button>
               </div>
@@ -168,7 +168,7 @@ export function CommunityFeed({
               </p>
 
               {/* Comments Section */}
-              <div className="space-y-2 pt-3 border-t border-[#1E1E1E]">
+              <div className="space-y-2 pt-3 border-t border-[#1A1813]">
                 {postComments.map((c) => (
                   <div
                     key={c.id}
@@ -190,7 +190,7 @@ export function CommunityFeed({
                       setCommentByPost((prev) => ({ ...prev, [post.id]: e.target.value }))
                     }
                     placeholder="Write a reply..."
-                    className="flex-1 rounded-[8px] border border-[#2A2A2A] bg-[#0E0E0E] px-3.5 py-2 text-xs text-white placeholder-[#555] focus:outline-none focus:border-[#F5B301]"
+                    className="flex-1 rounded-[8px] border border-[#2A2A2A] bg-[#0E0E0E] px-3.5 py-2 text-xs text-white placeholder-[#555] focus:outline-none focus:border-[#E5C158]"
                   />
                   <button
                     type="button"

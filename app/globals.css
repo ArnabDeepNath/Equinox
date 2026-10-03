@@ -1,12 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0B0B0B;
+  --background: #060606;
   --foreground: #FFFFFF;
-  --surface: #121212;
-  --border: #1E1E1E;
+  --surface: #0D0D0D;
+  --border: #1A1813;
   --text-muted: #A1A1A1;
-  --primary-yellow: #F5B301;
+  --primary-yellow: #E5C158;
+  --primary-gold: #E5C158;
+  --gold: #E5C158;
+  --gold-soft: #F6E7B8;
+  --muted-foreground: #9E9E9E;
 }
 
 @theme inline {
@@ -34,6 +38,30 @@ a {
 }
 
 ::selection {
-  background: rgba(245, 179, 1, 0.25);
+  background: rgba(229, 193, 88, 0.25);
   color: #FFFFFF;
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FFF4C2 0%, #E5C158 50%, #B98D29 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #FBE8A6 0%, #E5C158 50%, #B98D29 100%);
+}
+
+.gold-button {
+  background: linear-gradient(135deg, #F5D77F 0%, #E5C158 50%, #C49830 100%);
+  color: #000000;
+  font-weight: 700;
+  box-shadow: 0 4px 20px -2px rgba(229, 193, 88, 0.25);
+  transition: all 0.2s ease;
+}
+
+.gold-button:hover {
+  background: linear-gradient(135deg, #FFF0B3 0%, #EDB844 50%, #AF8323 100%);
+  box-shadow: 0 6px 24px 0 rgba(229, 193, 88, 0.35);
+  transform: translateY(-1px);
 }

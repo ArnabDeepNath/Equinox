@@ -11,12 +11,12 @@ export function GET() {
     theme_color: pwaConfig.themeColor,
     icons: [
       {
-        src: "/next.svg",
+        src: "/equinox-mark.svg",
         sizes: "192x192",
         type: "image/svg+xml",
       },
       {
-        src: "/vercel.svg",
+        src: "/equinox-logo.svg",
         sizes: "512x512",
         type: "image/svg+xml",
       },

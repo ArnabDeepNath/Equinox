@@ -142,8 +142,8 @@ export function BookingFlow({
       {/* Selection Column (8 cols) */}
       <div className="lg:col-span-8 space-y-6">
         {/* Step 1: Venue */}
-        <div className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-6 space-y-4">
-          <label className="text-xs uppercase font-bold text-[#F5B301] tracking-wider">
+        <div className="rounded-[16px] bg-[#0D0D0D] border border-[#1A1813] p-6 space-y-4">
+          <label className="text-xs uppercase font-bold text-[#E5C158] tracking-wider">
             1. Select Venue
           </label>
           <div className="grid sm:grid-cols-2 gap-3">
@@ -162,13 +162,13 @@ export function BookingFlow({
                   }}
                   className={`text-left p-4 rounded-[12px] border transition-colors ${
                     active
-                      ? "border-[#F5B301] bg-[#181818]"
+                      ? "border-[#E5C158] bg-[#181818]"
                       : "border-[#2A2A2A] bg-[#0E0E0E] hover:border-[#3A3A3A]"
                   }`}
                 >
                   <p className="font-semibold text-white text-sm">{v.name}</p>
                   <p className="text-xs text-[#A1A1A1] mt-1 flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-[#F5B301]" />
+                    <MapPin className="w-3.5 h-3.5 text-[#E5C158]" />
                     {v.city} · {v.currency}
                   </p>
                 </button>
@@ -178,8 +178,8 @@ export function BookingFlow({
         </div>
 
         {/* Step 2: Sport */}
-        <div className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-6 space-y-4">
-          <label className="text-xs uppercase font-bold text-[#F5B301] tracking-wider">
+        <div className="rounded-[16px] bg-[#0D0D0D] border border-[#1A1813] p-6 space-y-4">
+          <label className="text-xs uppercase font-bold text-[#E5C158] tracking-wider">
             2. Choose Sport
           </label>
           <div className="flex flex-wrap gap-2">
@@ -197,7 +197,7 @@ export function BookingFlow({
                   }}
                   className={`px-4 py-2.5 rounded-[10px] border text-xs font-semibold transition-colors ${
                     active
-                      ? "border-[#F5B301] bg-[#F5B301] text-black"
+                      ? "border-[#E5C158] bg-[#E5C158] text-black"
                       : "border-[#2A2A2A] bg-[#0E0E0E] text-[#A1A1A1] hover:text-white hover:border-[#3A3A3A]"
                   }`}
                 >
@@ -209,15 +209,15 @@ export function BookingFlow({
         </div>
 
         {/* Step 3: Court & Date */}
-        <div className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-6 space-y-4">
-          <label className="text-xs uppercase font-bold text-[#F5B301] tracking-wider">
+        <div className="rounded-[16px] bg-[#0D0D0D] border border-[#1A1813] p-6 space-y-4">
+          <label className="text-xs uppercase font-bold text-[#E5C158] tracking-wider">
             3. Court & Date
           </label>
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
               <label className="text-xs text-[#A1A1A1] block mb-1.5 font-medium">Court</label>
               <select
-                className="w-full rounded-[10px] border border-[#2A2A2A] bg-[#0E0E0E] px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5B301]"
+                className="w-full rounded-[10px] border border-[#2A2A2A] bg-[#0E0E0E] px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#E5C158]"
                 value={courtId}
                 onChange={(e) => {
                   setCourtId(e.target.value);
@@ -244,16 +244,16 @@ export function BookingFlow({
                   setQuote(null);
                 }}
                 min={new Date().toISOString().slice(0, 10)}
-                className="w-full rounded-[10px] border border-[#2A2A2A] bg-[#0E0E0E] px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5B301]"
+                className="w-full rounded-[10px] border border-[#2A2A2A] bg-[#0E0E0E] px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#E5C158]"
               />
             </div>
           </div>
         </div>
 
         {/* Step 4: Slots */}
-        <div className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-6 space-y-4">
+        <div className="rounded-[16px] bg-[#0D0D0D] border border-[#1A1813] p-6 space-y-4">
           <div className="flex items-center justify-between">
-            <label className="text-xs uppercase font-bold text-[#F5B301] tracking-wider">
+            <label className="text-xs uppercase font-bold text-[#E5C158] tracking-wider">
               4. Available Slots
             </label>
             <span className="text-xs text-[#A1A1A1]">
@@ -283,13 +283,13 @@ export function BookingFlow({
                       isLocked
                         ? "opacity-40 cursor-not-allowed border-[#2A2A2A] bg-[#0E0E0E]"
                         : isSelected
-                        ? "border-[#F5B301] bg-[#181818] text-white"
+                        ? "border-[#E5C158] bg-[#181818] text-white"
                         : "border-[#2A2A2A] bg-[#0E0E0E] text-[#A1A1A1] hover:border-[#3A3A3A] hover:text-white"
                     }`}
                   >
                     <div>
                       <div className="flex items-center gap-2">
-                        <Clock className="w-3.5 h-3.5 text-[#F5B301]" />
+                        <Clock className="w-3.5 h-3.5 text-[#E5C158]" />
                         <span className="font-semibold text-sm text-white">{s.label}</span>
                       </div>
                       <p className="text-[11px] text-[#A1A1A1] mt-0.5">
@@ -298,11 +298,11 @@ export function BookingFlow({
                     </div>
 
                     {isMemberOnly ? (
-                      <span className="inline-flex items-center gap-1 rounded bg-[#F5B301]/10 text-[#F5B301] border border-[#F5B301]/30 text-[10px] font-bold px-2 py-0.5">
+                      <span className="inline-flex items-center gap-1 rounded bg-[#E5C158]/10 text-[#E5C158] border border-[#E5C158]/30 text-[10px] font-bold px-2 py-0.5">
                         {isLocked ? <Lock className="w-3 h-3" /> : "Member Only"}
                       </span>
                     ) : (
-                      <span className="rounded bg-[#1A1A1A] text-white text-[10px] px-2 py-0.5">
+                      <span className="rounded bg-[#141414] text-white text-[10px] px-2 py-0.5">
                         Open
                       </span>
                     )}
@@ -317,7 +317,7 @@ export function BookingFlow({
               type="button"
               onClick={getQuote}
               disabled={loadingQuote || !courtId || !slotId}
-              className="rounded-[10px] border border-[#2A2A2A] hover:border-[#F5B301] bg-transparent text-white font-medium px-6 py-2.5 text-xs transition-colors disabled:opacity-40"
+              className="rounded-[10px] border border-[#2A2A2A] hover:border-[#E5C158] bg-transparent text-white font-medium px-6 py-2.5 text-xs transition-colors disabled:opacity-40"
             >
               {loadingQuote ? "Calculating..." : "Calculate Price"}
             </button>
@@ -327,30 +327,30 @@ export function BookingFlow({
 
       {/* Summary Column (4 cols) */}
       <div className="lg:col-span-4">
-        <div className="sticky top-28 rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-6 space-y-5">
-          <div className="border-b border-[#1E1E1E] pb-3">
+        <div className="sticky top-28 rounded-[16px] bg-[#0D0D0D] border border-[#1A1813] p-6 space-y-5">
+          <div className="border-b border-[#1A1813] pb-3">
             <h3 className="text-lg font-bold text-white">Booking Details</h3>
             <p className="text-xs text-[#A1A1A1] mt-0.5">Instant checkout</p>
           </div>
 
           <div className="space-y-2.5 text-xs">
-            <div className="flex justify-between py-1 border-b border-[#1A1A1A]">
+            <div className="flex justify-between py-1 border-b border-[#141414]">
               <span className="text-[#A1A1A1]">Venue</span>
               <span className="text-white font-medium">{selectedVenue?.name || "—"}</span>
             </div>
-            <div className="flex justify-between py-1 border-b border-[#1A1A1A]">
+            <div className="flex justify-between py-1 border-b border-[#141414]">
               <span className="text-[#A1A1A1]">Court</span>
               <span className="text-white font-medium">{selectedCourt?.name || "—"}</span>
             </div>
-            <div className="flex justify-between py-1 border-b border-[#1A1A1A]">
+            <div className="flex justify-between py-1 border-b border-[#141414]">
               <span className="text-[#A1A1A1]">Date</span>
               <span className="text-white font-medium">{bookingDate}</span>
             </div>
-            <div className="flex justify-between py-1 border-b border-[#1A1A1A]">
+            <div className="flex justify-between py-1 border-b border-[#141414]">
               <span className="text-[#A1A1A1]">Slot</span>
-              <span className="text-[#F5B301] font-semibold">{selectedSlot?.label || "—"}</span>
+              <span className="text-[#E5C158] font-semibold">{selectedSlot?.label || "—"}</span>
             </div>
-            <div className="flex justify-between py-1 border-b border-[#1A1A1A]">
+            <div className="flex justify-between py-1 border-b border-[#141414]">
               <span className="text-[#A1A1A1]">Member Status</span>
               <span className="text-white uppercase font-bold text-[10px]">
                 {user.membershipStatus}
@@ -364,13 +364,13 @@ export function BookingFlow({
                 <span>Base Total</span>
                 <span>{formatCurrency(quote.subtotal, quote.currency)}</span>
               </div>
-              <div className="flex justify-between text-xs text-emerald-400">
+              <div className="flex justify-between text-xs text-[#E5C158]">
                 <span>Member Discount</span>
                 <span>-{formatCurrency(quote.discount, quote.currency)}</span>
               </div>
-              <div className="flex justify-between items-baseline pt-2 border-t border-[#1E1E1E]">
+              <div className="flex justify-between items-baseline pt-2 border-t border-[#1A1813]">
                 <span className="text-xs font-semibold text-white">Total</span>
-                <span className="text-xl font-bold text-[#F5B301]">
+                <span className="text-xl font-bold text-[#E5C158]">
                   {formatCurrency(quote.total, quote.currency)}
                 </span>
               </div>
@@ -379,7 +379,7 @@ export function BookingFlow({
                 type="button"
                 onClick={confirmBooking}
                 disabled={confirming}
-                className="w-full mt-3 rounded-[10px] bg-[#F5B301] hover:bg-[#e0a400] text-black font-bold py-3 text-xs uppercase tracking-wider transition-colors disabled:opacity-50"
+                className="w-full mt-3 rounded-[10px] bg-[#E5C158] hover:bg-[#D4AF37] text-black font-bold py-3 text-xs uppercase tracking-wider transition-colors disabled:opacity-50"
               >
                 {confirming ? "Confirming..." : "Confirm & Pay"}
               </button>
@@ -392,11 +392,11 @@ export function BookingFlow({
 
           <div className="text-[11px] text-[#A1A1A1] space-y-1 pt-2">
             <p className="flex items-center gap-1.5">
-              <Check className="w-3.5 h-3.5 text-[#F5B301]" />
+              <Check className="w-3.5 h-3.5 text-[#E5C158]" />
               Instant slot lock
             </p>
             <p className="flex items-center gap-1.5">
-              <Check className="w-3.5 h-3.5 text-[#F5B301]" />
+              <Check className="w-3.5 h-3.5 text-[#E5C158]" />
               Free cancellation 6h prior
             </p>
           </div>

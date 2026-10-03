@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase/client";
-import { Dumbbell, Menu, X, Shield, User as UserIcon, LogOut } from "lucide-react";
+import { Menu, X, Shield, User as UserIcon, LogOut } from "lucide-react";
+import Image from "next/image";
 import { AppUser } from "@/lib/types";
 
 interface NavProps {
@@ -46,13 +47,25 @@ export function Nav({ user }: NavProps) {
       <div className="mx-auto max-w-7xl h-full px-4 sm:px-6 lg:px-8">
         <div className="flex h-full items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[#F5B301] flex items-center justify-center font-black text-black">
-              <Dumbbell className="w-4 h-4 text-black" />
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative w-9 h-9 flex-shrink-0 transition-transform duration-200 group-hover:scale-105">
+              <Image
+                src="/equinox-mark.svg"
+                alt="Equinox Brand Mark"
+                width={36}
+                height={36}
+                priority
+                className="w-full h-full object-contain drop-shadow-[0_0_12px_rgba(229,193,88,0.4)]"
+              />
             </div>
-            <span className="text-lg font-bold tracking-tight text-white">
-              Equinox <span className="text-[#F5B301]">Sports</span>
-            </span>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold tracking-[0.2em] text-white uppercase leading-none">
+                EQUINOX
+              </span>
+              <span className="text-[9px] uppercase tracking-[0.25em] text-[#E5C158] font-semibold mt-1">
+                THE SPORTS COMMUNE
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -72,7 +85,7 @@ export function Nav({ user }: NavProps) {
             {user?.role === "admin" && (
               <Link
                 href="/admin"
-                className="inline-flex items-center gap-1.5 font-semibold text-[#F5B301] hover:underline"
+                className="inline-flex items-center gap-1.5 font-semibold text-[#E5C158] hover:underline"
               >
                 <Shield className="w-4 h-4" />
                 Admin
@@ -85,10 +98,10 @@ export function Nav({ user }: NavProps) {
             {user ? (
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-2 bg-[#121212] border border-[#1E1E1E] px-3 py-1.5 rounded-lg text-xs">
-                  <UserIcon className="w-3.5 h-3.5 text-[#F5B301]" />
+                  <UserIcon className="w-3.5 h-3.5 text-[#E5C158]" />
                   <span className="font-medium text-white">{user.name}</span>
                   {user.membershipStatus === "approved" && (
-                    <span className="bg-[#F5B301]/20 text-[#F5B301] px-1.5 py-0.5 rounded text-[10px] font-bold">
+                    <span className="bg-[#E5C158]/20 text-[#E5C158] px-1.5 py-0.5 rounded text-[10px] font-bold">
                       MEMBER
                     </span>
                   )}
@@ -113,7 +126,7 @@ export function Nav({ user }: NavProps) {
                 </Link>
                 <Link
                   href="/book"
-                  className="rounded-[10px] bg-[#F5B301] hover:bg-[#e0a400] text-black font-semibold px-4 py-2 text-sm transition-colors"
+                  className="rounded-[10px] bg-[#E5C158] hover:brightness-110 text-black font-semibold px-4 py-2 text-sm transition-colors"
                 >
                   Book Now
                 </Link>
@@ -169,7 +182,7 @@ export function Nav({ user }: NavProps) {
             <Link
               href="/admin"
               onClick={() => setIsOpen(false)}
-              className="block text-sm font-semibold text-[#F5B301]"
+              className="block text-sm font-semibold text-[#E5C158]"
             >
               Admin Panel
             </Link>
@@ -202,7 +215,7 @@ export function Nav({ user }: NavProps) {
                 <Link
                   href="/book"
                   onClick={() => setIsOpen(false)}
-                  className="text-center rounded-[10px] bg-[#F5B301] text-black font-semibold py-2.5 text-xs"
+                  className="text-center rounded-[10px] bg-[#E5C158] text-black font-semibold py-2.5 text-xs"
                 >
                   Book Now
                 </Link>

@@ -42,18 +42,18 @@ export async function sendBookingSubmittedEmail(payload: NotificationPayload) {
       to: payload.user.email,
       subject: `Booking Request Received (Pending Review) - ${payload.venue.name}`,
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #0b0b0b; color: #ffffff; padding: 32px; border-radius: 12px; border: 1px solid #222;">
-          <h2 style="color: #F5B301; margin-top: 0;">Booking Received & Pending Approval</h2>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #060606; color: #ffffff; padding: 32px; border-radius: 12px; border: 1px solid #222;">
+          <h2 style="color: #E5C158; margin-top: 0;">Booking Received & Pending Approval</h2>
           <p style="color: #a1a1a1; font-size: 14px;">Hi ${payload.user.name}, we have received your booking and payment. Your reservation is currently under review by the venue administration.</p>
           
           <div style="background-color: #141414; border: 1px solid #262626; border-radius: 8px; padding: 20px; margin: 24px 0;">
-            <p style="margin: 6px 0; color: #ddd;"><strong>Booking ID:</strong> <span style="color: #F5B301;">${payload.booking.id}</span></p>
+            <p style="margin: 6px 0; color: #ddd;"><strong>Booking ID:</strong> <span style="color: #E5C158;">${payload.booking.id}</span></p>
             <p style="margin: 6px 0; color: #ddd;"><strong>Venue:</strong> ${payload.venue.name}</p>
             <p style="margin: 6px 0; color: #ddd;"><strong>Court:</strong> ${payload.court.name}</p>
             <p style="margin: 6px 0; color: #ddd;"><strong>Match Date:</strong> ${payload.booking.bookingDate}</p>
             <p style="margin: 6px 0; color: #ddd;"><strong>Slot Window:</strong> ${payload.slot.label}</p>
             <p style="margin: 6px 0; color: #ddd;"><strong>Total Amount:</strong> ${payload.booking.currency} ${payload.booking.total}</p>
-            <p style="margin: 6px 0; color: #ddd;"><strong>Current Status:</strong> <span style="background: rgba(245, 179, 1, 0.2); color: #F5B301; padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 12px;">PENDING ADMIN APPROVAL</span></p>
+            <p style="margin: 6px 0; color: #ddd;"><strong>Current Status:</strong> <span style="background: rgba(245, 179, 1, 0.2); color: #E5C158; padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 12px;">PENDING ADMIN APPROVAL</span></p>
           </div>
 
           <p style="color: #a1a1a1; font-size: 13px;">You will receive an update as soon as the club administrator approves or rejects your request.</p>
@@ -97,7 +97,7 @@ export async function sendBookingDecisionEmail(
       to: payload.user.email,
       subject,
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #0b0b0b; color: #ffffff; padding: 32px; border-radius: 12px; border: 1px solid #222;">
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #060606; color: #ffffff; padding: 32px; border-radius: 12px; border: 1px solid #222;">
           <h2 style="color: ${headerColor}; margin-top: 0;">
             ${isApproved ? "Your Booking is Confirmed! 🎉" : "Booking Request Declined"}
           </h2>
@@ -106,7 +106,7 @@ export async function sendBookingDecisionEmail(
           </p>
           
           <div style="background-color: #141414; border: 1px solid #262626; border-radius: 8px; padding: 20px; margin: 24px 0;">
-            <p style="margin: 6px 0; color: #ddd;"><strong>Booking ID:</strong> <span style="color: #F5B301;">${payload.booking.id}</span></p>
+            <p style="margin: 6px 0; color: #ddd;"><strong>Booking ID:</strong> <span style="color: #E5C158;">${payload.booking.id}</span></p>
             <p style="margin: 6px 0; color: #ddd;"><strong>Status:</strong> ${statusBadge}</p>
             <p style="margin: 6px 0; color: #ddd;"><strong>Venue:</strong> ${payload.venue.name}</p>
             <p style="margin: 6px 0; color: #ddd;"><strong>Court:</strong> ${payload.court.name}</p>

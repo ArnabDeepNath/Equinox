@@ -19,10 +19,10 @@ export default async function CommunityPage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-[#0B0B0B] text-white py-14 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#060606] text-white py-14 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-3xl">
         <div className="mb-10">
-          <span className="text-xs uppercase font-bold tracking-wider text-[#F5B301]">
+          <span className="text-xs uppercase font-bold tracking-wider text-[#E5C158]">
             Player Network
           </span>
           <h1 className="text-3xl font-bold text-white mt-1">Community Discussions</h1>

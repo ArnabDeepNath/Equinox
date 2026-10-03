@@ -35,22 +35,22 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
   });
 
   return (
-    <div className="min-h-screen bg-[#0B0B0B] text-white">
+    <div className="min-h-screen bg-[#060606] text-white">
       {/* 1. HERO SECTION */}
-      <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 border-b border-[#1A1A1A]">
+      <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 border-b border-[#141414]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Left Column (6 cols) */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#2A2A2A] bg-[#121212] text-xs font-medium text-[#A1A1A1]">
-                <span className="w-2 h-2 rounded-full bg-[#F5B301]"></span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#2A2A2A] bg-[#0D0D0D] text-xs font-medium text-[#A1A1A1]">
+                <span className="w-2 h-2 rounded-full bg-[#E5C158]"></span>
                 Live Court Availability Across Guwahati
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-tight text-white leading-[1.1]">
                 Book Sports Venues
                 <br />
-                <span className="text-[#F5B301]">Across Your City</span>
+                <span className="text-[#E5C158]">Across Your City</span>
               </h1>
 
               <p className="text-base sm:text-lg text-[#A1A1A1] max-w-xl leading-relaxed">
@@ -61,7 +61,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
                   href="/book"
-                  className="rounded-[10px] bg-[#F5B301] hover:bg-[#e0a400] text-black font-bold px-6 py-3.5 text-sm transition-colors inline-flex items-center gap-2"
+                  className="rounded-[10px] bg-[#E5C158] hover:bg-[#D4AF37] text-black font-bold px-6 py-3.5 text-sm transition-colors inline-flex items-center gap-2"
                 >
                   <Calendar className="w-4 h-4" />
                   Book a Venue
@@ -76,7 +76,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
             </div>
 
             {/* Right Column (5 cols) - Clean full image, no nested cards or glow */}
-            <div className="lg:col-span-5 relative w-full h-[380px] sm:h-[440px] rounded-[16px] overflow-hidden border border-[#1E1E1E]">
+            <div className="lg:col-span-5 relative w-full h-[380px] sm:h-[440px] rounded-[16px] overflow-hidden border border-[#1A1813]">
               <Image
                 src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=1200&auto=format&fit=crop"
                 alt="Equinox sports venue court"
@@ -90,7 +90,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
       </section>
 
       {/* 2. TRUST STRIP */}
-      <section className="bg-[#111111] border-b border-[#1A1A1A] py-8">
+      <section className="bg-[#111111] border-b border-[#141414] py-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
@@ -102,7 +102,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
               <p className="text-xs uppercase tracking-wider text-[#A1A1A1] mt-1">Slots Booked</p>
             </div>
             <div>
-              <p className="text-2xl sm:text-3xl font-bold text-[#F5B301]">100%</p>
+              <p className="text-2xl sm:text-3xl font-bold text-[#E5C158]">100%</p>
               <p className="text-xs uppercase tracking-wider text-[#A1A1A1] mt-1">Live Availability</p>
             </div>
             <div>
@@ -116,7 +116,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
       {/* 3. SPORTS FILTER CHIPS */}
       <section id="sports" className="pt-16 pb-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#1E1E1E] pb-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#1A1813] pb-6">
             <div>
               <h2 className="text-2xl sm:text-3xl font-semibold text-white">Featured Venues</h2>
               <p className="text-sm text-[#A1A1A1] mt-1">
@@ -135,7 +135,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
                     onClick={() => setSelectedSport(sport)}
                     className={`px-4 py-2 rounded-full text-xs font-semibold transition-colors ${
                       isSelected
-                        ? "bg-[#F5B301] text-black"
+                        ? "bg-[#E5C158] text-black"
                         : "border border-[#2A2A2A] text-[#A1A1A1] hover:text-white hover:border-[#3A3A3A]"
                     }`}
                   >
@@ -164,7 +164,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
               return (
                 <div
                   key={venue.id}
-                  className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] overflow-hidden flex flex-col justify-between hover:-translate-y-1 transition-all duration-200"
+                  className="rounded-[16px] bg-[#0D0D0D] border border-[#1A1813] overflow-hidden flex flex-col justify-between hover:-translate-y-1 transition-all duration-200"
                 >
                   <div className="relative h-52 w-full">
                     <Image
@@ -173,7 +173,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
                       fill
                       className="object-cover"
                     />
-                    <span className="absolute top-3 right-3 bg-[#0B0B0B]/85 text-white text-[11px] font-medium px-2.5 py-1 rounded">
+                    <span className="absolute top-3 right-3 bg-[#060606]/85 text-white text-[11px] font-medium px-2.5 py-1 rounded">
                       {venue.city}
                     </span>
                   </div>
@@ -182,12 +182,12 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
                     <div>
                       <h3 className="text-xl font-semibold text-white">{venue.name}</h3>
                       <p className="text-xs text-[#A1A1A1] mt-1.5 flex items-center gap-1">
-                        <MapPin className="w-3.5 h-3.5 text-[#F5B301]" />
+                        <MapPin className="w-3.5 h-3.5 text-[#E5C158]" />
                         {venue.address}
                       </p>
                     </div>
 
-                    <div className="border-t border-[#1E1E1E] pt-4 flex items-center justify-between text-xs">
+                    <div className="border-t border-[#1A1813] pt-4 flex items-center justify-between text-xs">
                       <div>
                         <span className="text-[#A1A1A1]">Starting from</span>
                         <p className="text-lg font-bold text-white">
@@ -196,7 +196,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
                       </div>
                       <div className="text-right">
                         <span className="text-[#A1A1A1]">Availability</span>
-                        <p className="text-xs font-semibold text-[#F5B301] flex items-center gap-1 justify-end">
+                        <p className="text-xs font-semibold text-[#E5C158] flex items-center gap-1 justify-end">
                           <Clock className="w-3 h-3" />
                           {venueSlots.length ? `${venueSlots.length} Slots Open` : "Open Daily"}
                         </p>
@@ -205,7 +205,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
 
                     <Link
                       href={`/book?venueId=${venue.id}`}
-                      className="w-full text-center rounded-[10px] bg-[#1A1A1A] hover:bg-[#F5B301] text-white hover:text-black font-semibold py-3 text-xs uppercase tracking-wider transition-colors inline-block"
+                      className="w-full text-center rounded-[10px] bg-[#141414] hover:bg-[#E5C158] text-white hover:text-black font-semibold py-3 text-xs uppercase tracking-wider transition-colors inline-block"
                     >
                       Book Now
                     </Link>
@@ -218,7 +218,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
       </section>
 
       {/* 5. HOW IT WORKS (Minimal 3-column steps, line icons, no clutter) */}
-      <section className="py-20 border-t border-[#1A1A1A] bg-[#0E0E0E]">
+      <section className="py-20 border-t border-[#141414] bg-[#0E0E0E]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-14">
             <h2 className="text-2xl sm:text-3xl font-semibold text-white">How It Works</h2>
@@ -229,7 +229,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
 
           <div className="grid md:grid-cols-3 gap-10">
             <div className="space-y-3">
-              <div className="w-10 h-10 rounded-lg border border-[#2A2A2A] bg-[#121212] flex items-center justify-center font-bold text-[#F5B301]">
+              <div className="w-10 h-10 rounded-lg border border-[#2A2A2A] bg-[#0D0D0D] flex items-center justify-center font-bold text-[#E5C158]">
                 1
               </div>
               <h3 className="text-lg font-semibold text-white">Choose Venue</h3>
@@ -239,7 +239,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
             </div>
 
             <div className="space-y-3">
-              <div className="w-10 h-10 rounded-lg border border-[#2A2A2A] bg-[#121212] flex items-center justify-center font-bold text-[#F5B301]">
+              <div className="w-10 h-10 rounded-lg border border-[#2A2A2A] bg-[#0D0D0D] flex items-center justify-center font-bold text-[#E5C158]">
                 2
               </div>
               <h3 className="text-lg font-semibold text-white">Pick Your Slot</h3>
@@ -249,7 +249,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
             </div>
 
             <div className="space-y-3">
-              <div className="w-10 h-10 rounded-lg border border-[#2A2A2A] bg-[#121212] flex items-center justify-center font-bold text-[#F5B301]">
+              <div className="w-10 h-10 rounded-lg border border-[#2A2A2A] bg-[#0D0D0D] flex items-center justify-center font-bold text-[#E5C158]">
                 3
               </div>
               <h3 className="text-lg font-semibold text-white">Book Instantly</h3>
@@ -262,12 +262,12 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
       </section>
 
       {/* 6. MEMBERSHIP SECTION (Clean split layout) */}
-      <section id="pricing" className="py-20 border-t border-[#1A1A1A]">
+      <section id="pricing" className="py-20 border-t border-[#141414]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Left */}
             <div className="lg:col-span-7 space-y-4">
-              <span className="text-xs uppercase font-bold tracking-wider text-[#F5B301]">
+              <span className="text-xs uppercase font-bold tracking-wider text-[#E5C158]">
                 For Regular Players
               </span>
               <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
@@ -279,7 +279,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
               <div className="pt-2">
                 <Link
                   href="/membership"
-                  className="rounded-[10px] bg-[#F5B301] hover:bg-[#e0a400] text-black font-semibold px-6 py-3.5 text-sm transition-colors inline-block"
+                  className="rounded-[10px] bg-[#E5C158] hover:bg-[#D4AF37] text-black font-semibold px-6 py-3.5 text-sm transition-colors inline-block"
                 >
                   Apply for Membership
                 </Link>
@@ -287,8 +287,8 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
             </div>
 
             {/* Right Card */}
-            <div className="lg:col-span-5 rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-8 space-y-6">
-              <div className="border-b border-[#1E1E1E] pb-4">
+            <div className="lg:col-span-5 rounded-[16px] bg-[#0D0D0D] border border-[#1A1813] p-8 space-y-6">
+              <div className="border-b border-[#1A1813] pb-4">
                 <span className="text-xs text-[#A1A1A1] uppercase font-semibold">Equinox Club Pass</span>
                 <p className="text-3xl font-extrabold text-white mt-1">
                   ₹999 <span className="text-sm font-normal text-[#A1A1A1]">/ month</span>
@@ -297,26 +297,26 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
 
               <div className="space-y-3 text-sm text-[#A1A1A1]">
                 <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-[#F5B301]" />
+                  <Check className="w-4 h-4 text-[#E5C158]" />
                   <span className="text-white">Priority booking 7 days in advance</span>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-[#F5B301]" />
+                  <Check className="w-4 h-4 text-[#E5C158]" />
                   <span className="text-white">Up to 20% flat discount on all courts</span>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-[#F5B301]" />
+                  <Check className="w-4 h-4 text-[#E5C158]" />
                   <span className="text-white">Exclusive peak morning & evening slots</span>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-[#F5B301]" />
+                  <Check className="w-4 h-4 text-[#E5C158]" />
                   <span className="text-white">Complimentary locker & equipment support</span>
                 </div>
               </div>
 
               <Link
                 href="/membership"
-                className="w-full text-center rounded-[10px] border border-[#2A2A2A] hover:border-[#F5B301] hover:text-[#F5B301] text-white font-semibold py-3 text-xs uppercase tracking-wider transition-colors inline-block"
+                className="w-full text-center rounded-[10px] border border-[#2A2A2A] hover:border-[#E5C158] hover:text-[#E5C158] text-white font-semibold py-3 text-xs uppercase tracking-wider transition-colors inline-block"
               >
                 Get Membership
               </Link>
@@ -326,7 +326,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
       </section>
 
       {/* 7. CLEAN STRUCTURED FOOTER */}
-      <footer className="border-t border-[#1A1A1A] bg-[#0B0B0B] py-14 text-sm text-[#A1A1A1]">
+      <footer className="border-t border-[#141414] bg-[#060606] py-14 text-sm text-[#A1A1A1]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             <div>
@@ -364,7 +364,7 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
             </div>
           </div>
 
-          <div className="border-t border-[#1A1A1A] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+          <div className="border-t border-[#141414] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
             <p>© {new Date().getFullYear()} Equinox Sports Inc. All rights reserved.</p>
             <p className="text-[#A1A1A1]">Next.js App Router · Firebase · PWA Ready</p>
           </div>

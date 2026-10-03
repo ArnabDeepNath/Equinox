@@ -239,7 +239,7 @@ export function AdminCatalogManager({
             onClick={() => setActiveTab("venues")}
             className={`flex items-center gap-2 px-5 py-2 rounded-xl text-xs font-bold transition ${
               activeTab === "venues"
-                ? "bg-amber-500 text-neutral-950 shadow-md"
+                ? "bg-[#E5C158] text-black shadow-md"
                 : "text-gray-400 hover:text-white"
             }`}
           >
@@ -251,7 +251,7 @@ export function AdminCatalogManager({
             onClick={() => setActiveTab("games")}
             className={`flex items-center gap-2 px-5 py-2 rounded-xl text-xs font-bold transition ${
               activeTab === "games"
-                ? "bg-amber-500 text-neutral-950 shadow-md"
+                ? "bg-[#E5C158] text-black shadow-md"
                 : "text-gray-400 hover:text-white"
             }`}
           >
@@ -263,7 +263,7 @@ export function AdminCatalogManager({
             onClick={() => setActiveTab("courts")}
             className={`flex items-center gap-2 px-5 py-2 rounded-xl text-xs font-bold transition ${
               activeTab === "courts"
-                ? "bg-amber-500 text-neutral-950 shadow-md"
+                ? "bg-[#E5C158] text-black shadow-md"
                 : "text-gray-400 hover:text-white"
             }`}
           >
@@ -276,7 +276,7 @@ export function AdminCatalogManager({
         <button
           type="button"
           onClick={openCreate}
-          className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-neutral-950 font-black px-6 py-2.5 text-xs uppercase tracking-wider transition shadow-lg shadow-orange-500/20"
+          className="inline-flex items-center gap-2 rounded-full gold-button  text-neutral-950 font-black px-6 py-2.5 text-xs uppercase tracking-wider transition shadow-lg shadow-[0_4px_20px_-2px_rgba(229,193,88,0.3)]"
         >
           <Plus className="w-4 h-4" />
           Add New {activeTab === "venues" ? "Venue" : activeTab === "games" ? "Game" : "Court"}
@@ -289,12 +289,12 @@ export function AdminCatalogManager({
           {venues.map((v) => (
             <div
               key={v.id}
-              className="rounded-3xl border border-white/10 bg-neutral-900/50 overflow-hidden flex flex-col justify-between group hover:border-amber-500/40 transition"
+              className="rounded-3xl border border-white/10 bg-neutral-900/50 overflow-hidden flex flex-col justify-between group hover:border-[#E5C158]/40 transition"
             >
               <div className="relative h-48 w-full">
                 <Image src={v.image} alt={v.name} fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent"></div>
-                <span className="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-amber-400 font-mono text-xs px-3 py-1 rounded-full border border-white/10">
+                <span className="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-[#E5C158] font-mono text-xs px-3 py-1 rounded-full border border-white/10">
                   ID: {v.id}
                 </span>
               </div>
@@ -303,14 +303,14 @@ export function AdminCatalogManager({
                 <div>
                   <h3 className="text-xl font-bold text-white">{v.name}</h3>
                   <p className="text-xs text-gray-400 mt-1 flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-amber-400" />
+                    <MapPin className="w-3.5 h-3.5 text-[#E5C158]" />
                     {v.address}
                   </p>
                 </div>
 
                 <div className="flex items-center gap-4 text-xs text-gray-400 border-y border-white/5 py-3">
                   <span>City: <strong className="text-white">{v.city}</strong></span>
-                  <span>Currency: <strong className="text-amber-400 font-mono">{v.currency}</strong></span>
+                  <span>Currency: <strong className="text-[#E5C158] font-mono">{v.currency}</strong></span>
                   <span>Zone: <strong className="text-white">{v.timezone}</strong></span>
                 </div>
 
@@ -320,7 +320,7 @@ export function AdminCatalogManager({
                     onClick={() => openEdit(v)}
                     className="inline-flex items-center gap-1.5 rounded-full bg-white/10 hover:bg-white/20 px-4 py-2 text-xs font-semibold text-white transition"
                   >
-                    <Pencil className="w-3.5 h-3.5 text-amber-400" />
+                    <Pencil className="w-3.5 h-3.5 text-[#E5C158]" />
                     Edit
                   </button>
                   <button
@@ -344,11 +344,11 @@ export function AdminCatalogManager({
           {games.map((g) => (
             <div
               key={g.id}
-              className="rounded-3xl border border-white/10 bg-neutral-900/50 overflow-hidden flex flex-col justify-between hover:border-amber-500/40 transition"
+              className="rounded-3xl border border-white/10 bg-neutral-900/50 overflow-hidden flex flex-col justify-between hover:border-[#E5C158]/40 transition"
             >
               <div className="relative h-44 w-full">
                 <Image src={g.image} alt={g.name} fill className="object-cover" />
-                <span className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-amber-400 font-mono text-[10px] px-2.5 py-0.5 rounded-full border border-white/10">
+                <span className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-[#E5C158] font-mono text-[10px] px-2.5 py-0.5 rounded-full border border-white/10">
                   {g.id}
                 </span>
               </div>
@@ -362,7 +362,7 @@ export function AdminCatalogManager({
                     {(g.features || []).map((f) => (
                       <span
                         key={f}
-                        className="bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-md px-2 py-0.5 text-[10px] font-semibold"
+                        className="bg-[#E5C158]/10 text-[#E5C158] border border-[#E5C158]/20 rounded-md px-2 py-0.5 text-[10px] font-semibold"
                       >
                         {f}
                       </span>
@@ -376,7 +376,7 @@ export function AdminCatalogManager({
                     <button
                       type="button"
                       onClick={() => openEdit(g)}
-                      className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-amber-400 transition"
+                      className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-[#E5C158] transition"
                     >
                       <Pencil className="w-3.5 h-3.5" />
                     </button>
@@ -405,11 +405,11 @@ export function AdminCatalogManager({
             return (
               <div
                 key={c.id}
-                className="rounded-3xl border border-white/10 bg-neutral-900/50 overflow-hidden flex flex-col justify-between hover:border-amber-500/40 transition"
+                className="rounded-3xl border border-white/10 bg-neutral-900/50 overflow-hidden flex flex-col justify-between hover:border-[#E5C158]/40 transition"
               >
                 <div className="relative h-44 w-full">
                   <Image src={c.image} alt={c.name} fill className="object-cover" />
-                  <span className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-amber-400 font-mono text-[10px] px-2.5 py-0.5 rounded-full border border-white/10">
+                  <span className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-[#E5C158] font-mono text-[10px] px-2.5 py-0.5 rounded-full border border-white/10">
                     {c.id}
                   </span>
                 </div>
@@ -418,14 +418,14 @@ export function AdminCatalogManager({
                   <div>
                     <h3 className="text-lg font-bold text-white">{c.name}</h3>
                     <p className="text-xs text-gray-400 mt-1">
-                      Venue: <strong className="text-gray-200">{v?.name || c.venueId}</strong> · Sport: <strong className="text-amber-400">{g?.name || c.gameId}</strong>
+                      Venue: <strong className="text-gray-200">{v?.name || c.venueId}</strong> · Sport: <strong className="text-[#E5C158]">{g?.name || c.gameId}</strong>
                     </p>
 
                     <div className="flex items-center justify-between bg-neutral-950 p-2.5 rounded-xl border border-white/5 mt-3 text-xs">
                       <span className="text-gray-400">Base Price:</span>
                       <span className="font-bold text-white">₹{c.basePrice}</span>
                       <span className="text-gray-400">Member Disc:</span>
-                      <span className="font-bold text-emerald-400">{c.memberDiscountPercent}%</span>
+                      <span className="font-bold text-[#E5C158]">{c.memberDiscountPercent}%</span>
                     </div>
                   </div>
 
@@ -435,7 +435,7 @@ export function AdminCatalogManager({
                       <button
                         type="button"
                         onClick={() => openEdit(c)}
-                        className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-amber-400 transition"
+                        className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-[#E5C158] transition"
                       >
                         <Pencil className="w-3.5 h-3.5" />
                       </button>
@@ -485,7 +485,7 @@ export function AdminCatalogManager({
                       onChange={(e) => setVName(e.target.value)}
                       required
                       placeholder="Equinox Beltola Complex"
-                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                     />
                   </div>
 
@@ -498,7 +498,7 @@ export function AdminCatalogManager({
                         onChange={(e) => setVCity(e.target.value)}
                         required
                         placeholder="Guwahati"
-                        className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                        className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                       />
                     </div>
                     <div>
@@ -509,7 +509,7 @@ export function AdminCatalogManager({
                         onChange={(e) => setVCurrency(e.target.value)}
                         required
                         placeholder="INR"
-                        className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                        className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                       />
                     </div>
                   </div>
@@ -522,7 +522,7 @@ export function AdminCatalogManager({
                       onChange={(e) => setVTimezone(e.target.value)}
                       required
                       placeholder="Asia/Kolkata"
-                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                     />
                   </div>
 
@@ -534,7 +534,7 @@ export function AdminCatalogManager({
                       required
                       rows={2}
                       placeholder="Beltola / Ganeshguri, Guwahati"
-                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-2.5 text-white text-sm focus:outline-none focus:border-amber-500"
+                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-2.5 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                     />
                   </div>
 
@@ -546,7 +546,7 @@ export function AdminCatalogManager({
                       onChange={(e) => setVImage(e.target.value)}
                       required
                       placeholder="https://..."
-                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                     />
                   </div>
                 </>
@@ -563,7 +563,7 @@ export function AdminCatalogManager({
                       onChange={(e) => setGName(e.target.value)}
                       required
                       placeholder="Paddle Tennis"
-                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                     />
                   </div>
 
@@ -575,7 +575,7 @@ export function AdminCatalogManager({
                       required
                       rows={2}
                       placeholder="Professional paddle courts with evening lighting..."
-                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-2.5 text-white text-sm focus:outline-none focus:border-amber-500"
+                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-2.5 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                     />
                   </div>
 
@@ -586,7 +586,7 @@ export function AdminCatalogManager({
                       value={gFeatures}
                       onChange={(e) => setGFeatures(e.target.value)}
                       placeholder="LED lights, Coach support, Locker room"
-                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                     />
                   </div>
 
@@ -597,7 +597,7 @@ export function AdminCatalogManager({
                       value={gVenueIds}
                       onChange={(e) => setGVenueIds(e.target.value)}
                       placeholder="venue-1, venue-2"
-                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                     />
                   </div>
 
@@ -609,7 +609,7 @@ export function AdminCatalogManager({
                       onChange={(e) => setGImage(e.target.value)}
                       required
                       placeholder="https://..."
-                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                     />
                   </div>
                 </>
@@ -626,7 +626,7 @@ export function AdminCatalogManager({
                       onChange={(e) => setCName(e.target.value)}
                       required
                       placeholder="Paddle Court Premium 1"
-                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                     />
                   </div>
 
@@ -637,7 +637,7 @@ export function AdminCatalogManager({
                         value={cVenueId}
                         onChange={(e) => setCVenueId(e.target.value)}
                         required
-                        className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-3 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                        className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-3 py-3 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                       >
                         {venues.map((v) => (
                           <option key={v.id} value={v.id}>
@@ -653,7 +653,7 @@ export function AdminCatalogManager({
                         value={cGameId}
                         onChange={(e) => setCGameId(e.target.value)}
                         required
-                        className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-3 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                        className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-3 py-3 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                       >
                         {games.map((g) => (
                           <option key={g.id} value={g.id}>
@@ -672,7 +672,7 @@ export function AdminCatalogManager({
                         value={cBasePrice}
                         onChange={(e) => setCBasePrice(e.target.value)}
                         required
-                        className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                        className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                       />
                     </div>
                     <div>
@@ -682,7 +682,7 @@ export function AdminCatalogManager({
                         value={cDiscount}
                         onChange={(e) => setCDiscount(e.target.value)}
                         required
-                        className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                        className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                       />
                     </div>
                   </div>
@@ -694,7 +694,7 @@ export function AdminCatalogManager({
                       value={cFeatures}
                       onChange={(e) => setCFeatures(e.target.value)}
                       placeholder="Glass court, Outdoor, Night play"
-                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                     />
                   </div>
 
@@ -706,7 +706,7 @@ export function AdminCatalogManager({
                       onChange={(e) => setCImage(e.target.value)}
                       required
                       placeholder="https://..."
-                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500"
+                      className="w-full rounded-2xl border border-white/15 bg-neutral-950 px-4 py-3 text-white text-sm focus:outline-none focus:border-[#E5C158]"
                     />
                   </div>
                 </>
@@ -723,7 +723,7 @@ export function AdminCatalogManager({
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-neutral-950 font-bold py-3 transition hover:brightness-110 disabled:opacity-50 text-sm shadow-lg"
+                  className="flex-1 rounded-full gold-button text-neutral-950 font-bold py-3 transition hover:brightness-110 disabled:opacity-50 text-sm shadow-lg"
                 >
                   {loading ? "Saving..." : editTarget ? "Update Item" : "Create Item"}
                 </button>

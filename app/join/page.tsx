@@ -1,8 +1,9 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, googleProvider } from "@/lib/firebase/client";
 import { toast } from "sonner";
@@ -110,25 +111,31 @@ export default function JoinPage() {
   return (
     <div className="min-h-screen bg-neutral-950 flex flex-col lg:flex-row">
       {/* Left Showcase Side */}
-      <div className="relative hidden lg:flex lg:w-1/2 bg-gradient-to-br from-neutral-950 via-[#100d07] to-neutral-950 p-16 flex-col justify-between border-r border-white/10 overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="relative hidden lg:flex lg:w-1/2 bg-gradient-to-br from-[#060606] via-[#120f08] to-[#060606] p-16 flex-col justify-between border-r border-white/10 overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#E5C158]/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div>
           <Link href="/" className="inline-flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-lg shadow-orange-500/20">
-              <Dumbbell className="w-6 h-6 text-neutral-950" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#E5C158] to-[#E5C158] flex items-center justify-center shadow-lg shadow-[#E5C158]/20">
+              <Image
+                src="/equinox-mark.svg"
+                alt="Equinox Brand Mark"
+                width={36}
+                height={36}
+                className="w-full h-full object-contain drop-shadow-[0_0_12px_rgba(229,193,88,0.4)]"
+              />
             </div>
             <span className="text-2xl font-black tracking-tight text-white uppercase">
-              Equinox <span className="text-amber-400">Sports</span>
+              Equinox <span className="text-[#E5C158]">Sports</span>
             </span>
           </Link>
 
           <div className="mt-20 max-w-lg">
-            <span className="text-amber-400 uppercase font-black tracking-widest text-xs">
+            <span className="text-[#E5C158] uppercase font-black tracking-widest text-xs">
               MEMBER ONBOARDING
             </span>
             <h1 className="text-5xl font-black text-white mt-4 leading-tight">
-              Join the elite circle of <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">sports enthusiasts</span>
+              Join the elite circle of <span className="text-transparent gold-gradient-text">sports enthusiasts</span>
             </h1>
             <p className="text-gray-400 mt-4 text-base leading-relaxed">
               Register in under 60 seconds to lock exclusive booking windows, get verified membership pricing, and find players in the community.
@@ -142,8 +149,8 @@ export default function JoinPage() {
                 { icon: CheckCircle2, text: "Access to verified sports venues across Guwahati" },
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center gap-3.5 text-sm text-gray-300">
-                  <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-4 h-4 text-amber-400" />
+                  <div className="w-8 h-8 rounded-lg bg-[#E5C158]/10 border border-[#E5C158]/20 flex items-center justify-center flex-shrink-0">
+                    <item.icon className="w-4 h-4 text-[#E5C158]" />
                   </div>
                   <span>{item.text}</span>
                 </div>
@@ -162,7 +169,16 @@ export default function JoinPage() {
       <div className="flex-1 flex items-center justify-center p-6 sm:p-12 lg:p-16">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <h2 className="text-3xl font-black text-white tracking-tight">Create your account</h2>
+            <div className="flex flex-col items-center gap-4">
+              <Image
+                src="/equinox-logo.svg"
+                alt="Equinox — The Sports Commune"
+                width={170}
+                height={143}
+                className="w-[170px] h-auto rounded-xl border border-white/10"
+              />
+            </div>
+            <h2 className="text-3xl font-black text-white tracking-tight text-center">Create your account</h2>
             <p className="text-sm text-gray-400 mt-1.5">
               Start reserving courts and connecting with sports clubs today.
             </p>
@@ -220,7 +236,7 @@ export default function JoinPage() {
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Rahul Sharma"
                   required
-                  className="w-full rounded-2xl border border-white/15 bg-neutral-900/80 pl-11 pr-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition"
+                  className="w-full rounded-2xl border border-white/15 bg-neutral-900/80 pl-11 pr-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#E5C158] focus:ring-1 focus:ring-[#E5C158] transition"
                 />
               </div>
             </div>
@@ -237,7 +253,7 @@ export default function JoinPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full rounded-2xl border border-white/15 bg-neutral-900/80 pl-11 pr-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition"
+                  className="w-full rounded-2xl border border-white/15 bg-neutral-900/80 pl-11 pr-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#E5C158] focus:ring-1 focus:ring-[#E5C158] transition"
                 />
               </div>
             </div>
@@ -254,7 +270,7 @@ export default function JoinPage() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+91 98765 43210"
-                    className="w-full rounded-2xl border border-white/15 bg-neutral-900/80 pl-10 pr-3 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
+                    className="w-full rounded-2xl border border-white/15 bg-neutral-900/80 pl-10 pr-3 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#E5C158]"
                   />
                 </div>
               </div>
@@ -266,7 +282,7 @@ export default function JoinPage() {
                 <select
                   value={favoriteSport}
                   onChange={(e) => setFavoriteSport(e.target.value)}
-                  className="w-full rounded-2xl border border-white/15 bg-neutral-900 px-3 py-3.5 text-sm text-white focus:outline-none focus:border-amber-500"
+                  className="w-full rounded-2xl border border-white/15 bg-neutral-900 px-3 py-3.5 text-sm text-white focus:outline-none focus:border-[#E5C158]"
                 >
                   <option value="Paddle">Paddle</option>
                   <option value="Football">Football</option>
@@ -284,7 +300,7 @@ export default function JoinPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="At least 6 characters"
-                  className="w-full rounded-2xl border border-white/15 bg-neutral-900/80 pl-11 pr-11 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition"
+                  className="w-full rounded-2xl border border-white/15 bg-neutral-900/80 pl-11 pr-11 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#E5C158] focus:ring-1 focus:ring-[#E5C158] transition"
                 />
                 <button
                   type="button"
@@ -299,7 +315,7 @@ export default function JoinPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-neutral-950 font-black py-4 text-sm transition shadow-lg shadow-orange-500/25 hover:brightness-105 disabled:opacity-50 mt-2"
+              className="w-full rounded-full gold-button  text-neutral-950 font-black py-4 text-sm transition shadow-lg shadow-[0_4px_20px_-2px_rgba(229,193,88,0.3)] hover:brightness-105 disabled:opacity-50 mt-2"
             >
               {loading ? "Creating your account..." : "Sign Up"}
             </button>
@@ -307,7 +323,7 @@ export default function JoinPage() {
 
           <p className="text-center text-xs text-gray-400">
             Already have an account?{" "}
-            <Link href="/login" className="text-amber-400 hover:text-amber-300 font-bold">
+            <Link href="/login" className="text-[#E5C158] hover:text-amber-300 font-bold">
               Log in
             </Link>
           </p>

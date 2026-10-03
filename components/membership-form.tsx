@@ -50,7 +50,7 @@ export function MembershipForm() {
           maxLength={300}
           rows={4}
           placeholder="I play paddle twice a week on weekday mornings in Guwahati and wish to reserve peak slots..."
-          className="w-full rounded-[10px] border border-[#2A2A2A] bg-[#0E0E0E] p-3 text-sm text-white placeholder-[#555] focus:outline-none focus:border-[#F5B301]"
+          className="w-full rounded-[10px] border border-[#2A2A2A] bg-[#0E0E0E] p-3 text-sm text-white placeholder-[#555] focus:outline-none focus:border-[#E5C158]"
         />
         <span className="text-[10px] text-[#A1A1A1]">Minimum 10 characters</span>
       </div>
@@ -58,7 +58,7 @@ export function MembershipForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-[10px] bg-[#F5B301] hover:bg-[#e0a400] text-black font-semibold py-3 text-sm transition-colors disabled:opacity-50"
+        className="w-full rounded-[10px] bg-[#E5C158] hover:bg-[#D4AF37] text-black font-semibold py-3 text-sm transition-colors disabled:opacity-50"
       >
         {loading ? "Submitting Application..." : "Submit Application"}
       </button>

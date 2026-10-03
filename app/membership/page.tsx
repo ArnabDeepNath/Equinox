@@ -19,10 +19,10 @@ export default async function MembershipPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#0B0B0B] text-white py-16 px-4 sm:px-6">
+    <div className="min-h-screen bg-[#060606] text-white py-16 px-4 sm:px-6">
       <div className="mx-auto max-w-2xl">
         <div className="mb-8">
-          <span className="text-xs uppercase font-bold tracking-wider text-[#F5B301]">
+          <span className="text-xs uppercase font-bold tracking-wider text-[#E5C158]">
             Player Tier Upgrade
           </span>
           <h1 className="text-3xl font-bold text-white mt-1">Apply for Equinox Membership</h1>
@@ -31,8 +31,8 @@ export default async function MembershipPage() {
           </p>
         </div>
 
-        <div className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-8 space-y-6">
-          <div className="flex items-center justify-between pb-4 border-b border-[#1E1E1E] text-xs">
+        <div className="rounded-[16px] bg-[#0D0D0D] border border-[#1A1813] p-8 space-y-6">
+          <div className="flex items-center justify-between pb-4 border-b border-[#1A1813] text-xs">
             <div>
               <span className="text-[#A1A1A1]">Current Status:</span>
               <p className="font-bold text-white uppercase mt-0.5">{user.membershipStatus}</p>
@@ -44,11 +44,11 @@ export default async function MembershipPage() {
           </div>
 
           {user.membershipStatus === "approved" ? (
-            <div className="rounded-[10px] bg-emerald-500/10 border border-emerald-500/30 p-4 text-emerald-400 text-xs">
+            <div className="rounded-[10px] bg-[#E5C158]/10 border border-[#E5C158]/30 p-4 text-[#E5C158] text-xs">
               You are an active approved member. You already have priority access to all member-exclusive slots and automated discounts.
             </div>
           ) : existingPending ? (
-            <div className="rounded-[10px] bg-[#F5B301]/10 border border-[#F5B301]/30 p-4 text-[#F5B301] text-xs">
+            <div className="rounded-[10px] bg-[#E5C158]/10 border border-[#E5C158]/30 p-4 text-[#E5C158] text-xs">
               Your membership application is currently under admin review. You will be notified once processed.
             </div>
           ) : (

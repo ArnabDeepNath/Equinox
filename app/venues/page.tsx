@@ -12,10 +12,10 @@ export default async function VenuesPage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-[#0B0B0B] text-white py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#060606] text-white py-16 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 max-w-xl">
-          <span className="text-xs uppercase font-bold tracking-wider text-[#F5B301]">
+          <span className="text-xs uppercase font-bold tracking-wider text-[#E5C158]">
             Verified Facilities
           </span>
           <h1 className="text-3xl sm:text-4xl font-bold text-white mt-1">
@@ -40,7 +40,7 @@ export default async function VenuesPage() {
             return (
               <div
                 key={venue.id}
-                className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] overflow-hidden flex flex-col justify-between hover:border-[#2A2A2A] transition-colors"
+                className="rounded-[16px] bg-[#0D0D0D] border border-[#1A1813] overflow-hidden flex flex-col justify-between hover:border-[#2A2A2A] transition-colors"
               >
                 <div className="relative h-64 w-full">
                   <Image
@@ -49,7 +49,7 @@ export default async function VenuesPage() {
                     fill
                     className="object-cover"
                   />
-                  <span className="absolute top-4 right-4 bg-[#0B0B0B]/90 text-white text-xs font-semibold px-3 py-1 rounded">
+                  <span className="absolute top-4 right-4 bg-[#060606]/90 text-white text-xs font-semibold px-3 py-1 rounded">
                     {venue.city}
                   </span>
                 </div>
@@ -58,17 +58,17 @@ export default async function VenuesPage() {
                   <div>
                     <h2 className="text-2xl font-bold text-white">{venue.name}</h2>
                     <p className="text-xs text-[#A1A1A1] mt-1 flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5 text-[#F5B301]" />
+                      <MapPin className="w-3.5 h-3.5 text-[#E5C158]" />
                       {venue.address}
                     </p>
 
-                    <div className="grid grid-cols-2 gap-4 border-y border-[#1E1E1E] my-4 py-3 text-xs text-[#A1A1A1]">
+                    <div className="grid grid-cols-2 gap-4 border-y border-[#1A1813] my-4 py-3 text-xs text-[#A1A1A1]">
                       <div className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-[#F5B301]" />
+                        <Clock className="w-3.5 h-3.5 text-[#E5C158]" />
                         <span>{venue.timezone}</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <Globe className="w-3.5 h-3.5 text-[#F5B301]" />
+                        <Globe className="w-3.5 h-3.5 text-[#E5C158]" />
                         <span>Currency: <strong className="text-white">{venue.currency}</strong></span>
                       </div>
                     </div>
@@ -90,7 +90,7 @@ export default async function VenuesPage() {
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-[#1E1E1E] flex items-center justify-between">
+                  <div className="pt-4 border-t border-[#1A1813] flex items-center justify-between">
                     <div>
                       <span className="text-[11px] text-[#A1A1A1]">From</span>
                       <p className="text-lg font-bold text-white">₹{minPrice} <span className="text-xs font-normal text-[#A1A1A1]">/ hr</span></p>
@@ -98,7 +98,7 @@ export default async function VenuesPage() {
 
                     <Link
                       href={`/book?venueId=${venue.id}`}
-                      className="rounded-[10px] bg-[#F5B301] hover:bg-[#e0a400] text-black font-semibold px-5 py-2.5 text-xs uppercase tracking-wider transition-colors inline-flex items-center gap-1.5"
+                      className="rounded-[10px] bg-[#E5C158] hover:bg-[#D4AF37] text-black font-semibold px-5 py-2.5 text-xs uppercase tracking-wider transition-colors inline-flex items-center gap-1.5"
                     >
                       <Calendar className="w-3.5 h-3.5" />
                       Book Now

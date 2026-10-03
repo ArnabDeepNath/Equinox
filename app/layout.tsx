@@ -19,14 +19,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Equinox Sports - Premium Booking Platform",
+  title: "Equinox: The Sports Commune",
   description:
     "Book paddle, football turf, and table tennis in Guwahati with live availability and transparent pricing.",
   manifest: "/manifest.webmanifest",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0B0B0B",
+  themeColor: "#060606",
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
@@ -37,7 +37,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#0B0B0B] text-white">
+      <body className="min-h-full flex flex-col bg-[#060606] text-white">
         <Providers>
           <AuthGuard />
           <PwaRegister />

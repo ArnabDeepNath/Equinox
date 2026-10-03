@@ -1,8 +1,8 @@
 export const pwaConfig = {
-  name: "Equinox Sports",
+  name: "Equinox - The Sports Commune",
   shortName: "Equinox",
   description:
     "Premium sports booking platform for paddle, football, table tennis and more.",
-  themeColor: "#d4af37",
-  backgroundColor: "#070707",
+  themeColor: "#E5C158",
+  backgroundColor: "#060606",
 };

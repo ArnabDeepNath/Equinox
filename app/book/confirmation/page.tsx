@@ -17,12 +17,12 @@ export default async function BookingConfirmationPage({
 
   if (!booking) {
     return (
-      <div className="min-h-screen bg-[#0B0B0B] text-white flex items-center justify-center p-4">
-        <div className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-8 max-w-md w-full text-center space-y-4">
+      <div className="min-h-screen bg-[#060606] text-white flex items-center justify-center p-4">
+        <div className="rounded-[16px] bg-[#0D0D0D] border border-[#1A1813] p-8 max-w-md w-full text-center space-y-4">
           <p className="text-[#A1A1A1] text-sm">Booking details not found.</p>
           <Link
             href="/book"
-            className="inline-block rounded-[10px] bg-[#F5B301] text-black font-semibold px-5 py-2.5 text-xs"
+            className="inline-block rounded-[10px] bg-[#E5C158] text-black font-semibold px-5 py-2.5 text-xs"
           >
             Go to Booking
           </Link>
@@ -42,15 +42,15 @@ export default async function BookingConfirmationPage({
   const slot = slots.find((item) => item.id === booking.slotId);
 
   return (
-    <div className="min-h-screen bg-[#0B0B0B] text-white py-16 px-4 sm:px-6">
+    <div className="min-h-screen bg-[#060606] text-white py-16 px-4 sm:px-6">
       <div className="mx-auto max-w-lg">
-        <div className="rounded-[16px] bg-[#121212] border border-[#1E1E1E] p-8 space-y-6">
-          <div className="w-12 h-12 rounded-full bg-[#F5B301]/10 border border-[#F5B301]/20 flex items-center justify-center text-[#F5B301]">
+        <div className="rounded-[16px] bg-[#0D0D0D] border border-[#1A1813] p-8 space-y-6">
+          <div className="w-12 h-12 rounded-full bg-[#E5C158]/10 border border-[#E5C158]/20 flex items-center justify-center text-[#E5C158]">
             <Clock className="w-6 h-6" />
           </div>
 
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-[#F5B301]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#E5C158]">
               Awaiting Admin Approval
             </span>
             <h1 className="text-2xl font-bold text-white mt-1">Booking Submitted</h1>
@@ -59,8 +59,8 @@ export default async function BookingConfirmationPage({
             </p>
           </div>
 
-          <div className="rounded-[12px] bg-[#0E0E0E] border border-[#1E1E1E] p-5 space-y-3 text-xs">
-            <div className="flex justify-between items-center pb-2 border-b border-[#1E1E1E]">
+          <div className="rounded-[12px] bg-[#0E0E0E] border border-[#1A1813] p-5 space-y-3 text-xs">
+            <div className="flex justify-between items-center pb-2 border-b border-[#1A1813]">
               <span className="text-[#A1A1A1]">Reference ID</span>
               <span className="font-mono text-white font-medium">{booking.id}</span>
             </div>
@@ -74,15 +74,15 @@ export default async function BookingConfirmationPage({
             </div>
             <div className="flex justify-between items-center">
               <span className="text-[#A1A1A1]">Slot</span>
-              <span className="text-[#F5B301] font-medium">{booking.bookingDate} · {slot?.label || booking.slotId}</span>
+              <span className="text-[#E5C158] font-medium">{booking.bookingDate} · {slot?.label || booking.slotId}</span>
             </div>
-            <div className="flex justify-between items-baseline pt-2 border-t border-[#1E1E1E]">
+            <div className="flex justify-between items-baseline pt-2 border-t border-[#1A1813]">
               <span className="text-[#A1A1A1]">Status</span>
-              <span className="text-xs font-bold uppercase bg-[#F5B301]/10 text-[#F5B301] border border-[#F5B301]/30 px-2.5 py-0.5 rounded">
+              <span className="text-xs font-bold uppercase bg-[#E5C158]/10 text-[#E5C158] border border-[#E5C158]/30 px-2.5 py-0.5 rounded">
                 Pending Approval
               </span>
             </div>
-            <div className="flex justify-between items-baseline pt-2 border-t border-[#1E1E1E]">
+            <div className="flex justify-between items-baseline pt-2 border-t border-[#1A1813]">
               <span className="text-[#A1A1A1]">Amount</span>
               <span className="text-lg font-bold text-white">
                 {formatCurrency(booking.total, booking.currency)}
@@ -99,7 +99,7 @@ export default async function BookingConfirmationPage({
             </Link>
             <Link
               href="/"
-              className="flex-1 text-center rounded-[10px] bg-[#F5B301] hover:bg-[#e0a400] text-black font-semibold py-3 text-xs transition-colors"
+              className="flex-1 text-center rounded-[10px] bg-[#E5C158] hover:bg-[#D4AF37] text-black font-semibold py-3 text-xs transition-colors"
             >
               Return Home
             </Link>
