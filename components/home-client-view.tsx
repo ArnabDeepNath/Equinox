@@ -33,7 +33,6 @@ const SPORT_COLLECTIONS = [
     title: "Paddle",
     tagline: "Fast glass-wall rallies under gold floodlights.",
     mp4: "/videos/paddle.mp4",
-    webm: "/videos/paddle.webm",
     poster: "/videos/paddle-poster.jpg",
   },
   {
@@ -41,7 +40,6 @@ const SPORT_COLLECTIONS = [
     title: "Football Turf",
     tagline: "Five-a-side on pro-grade night turf.",
     mp4: "/videos/football.mp4",
-    webm: "/videos/football.webm",
     poster: "/videos/football-poster.jpg",
   },
   {
@@ -49,7 +47,6 @@ const SPORT_COLLECTIONS = [
     title: "Table Tennis",
     tagline: "Indoor precision on tournament tables.",
     mp4: "/videos/table-tennis.mp4",
-    webm: "/videos/table-tennis.webm",
     poster: "/videos/table-tennis-poster.jpg",
   },
 ];
@@ -95,7 +92,6 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
       <section className="relative -mt-[72px] flex min-h-[100svh] flex-col justify-end overflow-hidden">
         <BgVideo
           mp4="/videos/hero.mp4"
-          webm="/videos/hero.webm"
           poster="/videos/hero-poster.jpg"
           eager
           ariaLabel="Cinematic loop of a floodlit sports court at night"
@@ -212,7 +208,6 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
                 >
                   <BgVideo
                     mp4={sport.mp4}
-                    webm={sport.webm}
                     poster={sport.poster}
                     className="transition-transform duration-700 group-hover:scale-105"
                   />
@@ -369,7 +364,6 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
             <div className="relative h-[420px] overflow-hidden rounded-[20px] border border-[#1A1813] sm:h-[520px]">
               <BgVideo
                 mp4="/videos/experience.mp4"
-                webm="/videos/experience.webm"
                 poster="/videos/experience-poster.jpg"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />

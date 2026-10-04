@@ -13,7 +13,8 @@ broken, so you can ship posters first and add videos later.
 | `experience.mp4`          | Experience split | Slow pan across a premium empty sports club lounge + courts    |
 | `*-poster.jpg` (per file) | Poster fallbacks | First frame of each video                                      |
 
-Optional: a `.webm` (VP9) twin per video is served first when present.
+Only MP4 sources are wired up in the components. If you add `.webm` (VP9)
+twins later, pass them via the `webm` prop on `BgVideo`.
 
 ## Compression pipeline (REQUIRED — raw AI output is too heavy for the web)
 

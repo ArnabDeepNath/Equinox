@@ -85,6 +85,7 @@ export function BgVideo({
         muted
         loop
         playsInline
+        autoPlay={eager}
         preload={eager ? "auto" : "none"}
         poster={poster}
         onError={(event) => {
