@@ -67,7 +67,7 @@ export function BgVideo({
 
   return (
     <div
-      className={`absolute inset-0 overflow-hidden ${className}`}
+      className={`absolute inset-0 overflow-hidden bg-[radial-gradient(ellipse_at_bottom,#1B150B_0%,#080807_70%)] ${className}`}
       aria-hidden={ariaLabel ? undefined : true}
       aria-label={ariaLabel}
       role={ariaLabel ? "img" : undefined}
@@ -77,6 +77,10 @@ export function BgVideo({
         src={poster}
         alt=""
         loading={eager ? "eager" : "lazy"}
+        onError={(event) => {
+          // Poster not generated yet — the gradient fallback shows instead
+          event.currentTarget.style.display = "none";
+        }}
         className="absolute inset-0 h-full w-full object-cover"
       />
       <video

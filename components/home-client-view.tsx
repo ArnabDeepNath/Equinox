@@ -34,6 +34,7 @@ const SPORT_COLLECTIONS = [
     tagline: "Fast glass-wall rallies under gold floodlights.",
     mp4: "/videos/paddle.mp4",
     poster: "/videos/paddle-poster.jpg",
+    featured: true,
   },
   {
     key: "Football",
@@ -41,6 +42,7 @@ const SPORT_COLLECTIONS = [
     tagline: "Five-a-side on pro-grade night turf.",
     mp4: "/videos/football.mp4",
     poster: "/videos/football-poster.jpg",
+    featured: false,
   },
   {
     key: "Table Tennis",
@@ -48,6 +50,7 @@ const SPORT_COLLECTIONS = [
     tagline: "Indoor precision on tournament tables.",
     mp4: "/videos/table-tennis.mp4",
     poster: "/videos/table-tennis-poster.jpg",
+    featured: false,
   },
 ];
 
@@ -192,44 +195,87 @@ export function HomeClientView({ user, venues, games, courts, slots }: Props) {
                 </h2>
               </div>
               <p className="max-w-sm text-sm leading-relaxed text-[#A1A1A1]">
-                Three sports. One standard — immaculate courts, honest pricing,
-                instant confirmation.
+                Paddle is live now — our first arena. Football turf and table
+                tennis join the commune next.
               </p>
             </div>
           </Reveal>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {SPORT_COLLECTIONS.map((sport, index) => (
-              <Reveal key={sport.key} delay={index * 120}>
-                <button
-                  type="button"
-                  onClick={() => selectSport(sport.key)}
-                  className="group relative block h-[440px] w-full overflow-hidden rounded-[20px] border border-[#1A1813] text-left transition-all duration-500 hover:border-[#E5C158]/50 hover:shadow-[0_20px_60px_-20px_rgba(229,193,88,0.25)]"
-                >
-                  <BgVideo
-                    mp4={sport.mp4}
-                    poster={sport.poster}
-                    className="transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-7">
+          {/* Flagship — Paddle */}
+          {SPORT_COLLECTIONS.filter((s) => s.featured).map((sport) => (
+            <Reveal key={sport.key}>
+              <button
+                type="button"
+                onClick={() => selectSport(sport.key)}
+                className="group relative block h-[380px] w-full overflow-hidden rounded-[20px] border border-[#E5C158]/25 text-left transition-all duration-500 hover:border-[#E5C158]/60 hover:shadow-[0_24px_70px_-24px_rgba(229,193,88,0.35)] sm:h-[440px]"
+              >
+                <BgVideo
+                  mp4={sport.mp4}
+                  poster={sport.poster}
+                  eager
+                  className="transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
+                <span className="absolute left-7 top-7 inline-flex items-center gap-2 rounded-full border border-[#E5C158]/40 bg-black/50 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#E5C158] backdrop-blur sm:left-10 sm:top-10">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#E5C158]" />
+                  Now Booking · Flagship Sport
+                </span>
+                <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-5 p-7 sm:p-10">
+                  <div>
                     <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#E5C158]">
-                      0{index + 1}
+                      01
                     </p>
-                    <h3 className="mt-2 font-display text-3xl text-white">
+                    <h3 className="mt-2 font-display text-4xl text-white sm:text-5xl">
                       {sport.title}
                     </h3>
-                    <p className="mt-2 text-sm text-[#C9C9C9]">
+                    <p className="mt-2 max-w-md text-sm text-[#C9C9C9] sm:text-base">
                       {sport.tagline}
                     </p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/80 transition-colors group-hover:text-[#E5C158]">
-                      View venues
-                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                    </span>
                   </div>
-                </button>
-              </Reveal>
-            ))}
+                  <span className="gold-button inline-flex items-center gap-2 rounded-[10px] px-6 py-3.5 text-sm">
+                    Book Paddle
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </div>
+              </button>
+            </Reveal>
+          ))}
+
+          {/* Secondary sports */}
+          <div className="mt-6 grid gap-6 md:grid-cols-2">
+            {SPORT_COLLECTIONS.filter((s) => !s.featured).map(
+              (sport, index) => (
+                <Reveal key={sport.key} delay={index * 120}>
+                  <button
+                    type="button"
+                    onClick={() => selectSport(sport.key)}
+                    className="group relative block h-[300px] w-full overflow-hidden rounded-[20px] border border-[#1A1813] text-left transition-all duration-500 hover:border-[#E5C158]/50 hover:shadow-[0_20px_60px_-20px_rgba(229,193,88,0.25)]"
+                  >
+                    <BgVideo
+                      mp4={sport.mp4}
+                      poster={sport.poster}
+                      className="transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 p-7">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#E5C158]">
+                        0{index + 2}
+                      </p>
+                      <h3 className="mt-2 font-display text-3xl text-white">
+                        {sport.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-[#C9C9C9]">
+                        {sport.tagline}
+                      </p>
+                      <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/80 transition-colors group-hover:text-[#E5C158]">
+                        View venues
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </button>
+                </Reveal>
+              ),
+            )}
           </div>
         </div>
       </section>
