@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signOut } from "firebase/auth";
@@ -17,6 +17,14 @@ export function Nav({ user }: NavProps) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   async function handleLogout() {
     setLoggingOut(true);
@@ -31,7 +39,8 @@ export function Nav({ user }: NavProps) {
         credentials: "same-origin",
       });
       // Clear cookie client-side as well to guarantee immediate drop
-      document.cookie = "equinox_user=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      document.cookie =
+        "equinox_user=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT";
       // Force reload to cleanly refresh server state without leaving current domain
       window.location.href = "/";
     } catch (err) {
@@ -43,7 +52,13 @@ export function Nav({ user }: NavProps) {
   }
 
   return (
-    <nav className="sticky top-0 z-50 w-full h-[72px] border-b border-[#1A1A1A] bg-[#0B0B0B]/95 backdrop-blur-md">
+    <nav
+      className={`sticky top-0 z-50 w-full h-[72px] border-b transition-all duration-300 ${
+        scrolled || isOpen
+          ? "border-[#1A1A1A] bg-[#0B0B0B]/90 backdrop-blur-md"
+          : "border-transparent bg-transparent"
+      }`}
+    >
       <div className="mx-auto max-w-7xl h-full px-4 sm:px-6 lg:px-8">
         <div className="flex h-full items-center justify-between">
           {/* Logo */}
@@ -73,13 +88,22 @@ export function Nav({ user }: NavProps) {
             <Link href="/venues" className="transition-colors hover:text-white">
               Venues
             </Link>
-            <Link href="/#sports" className="transition-colors hover:text-white">
+            <Link
+              href="/#sports"
+              className="transition-colors hover:text-white"
+            >
               Sports
             </Link>
-            <Link href="/#pricing" className="transition-colors hover:text-white">
+            <Link
+              href="/#pricing"
+              className="transition-colors hover:text-white"
+            >
               Pricing
             </Link>
-            <Link href="/community" className="transition-colors hover:text-white">
+            <Link
+              href="/community"
+              className="transition-colors hover:text-white"
+            >
               Community
             </Link>
             {user?.role === "admin" && (
@@ -141,7 +165,11 @@ export function Nav({ user }: NavProps) {
               className="text-[#A1A1A1] hover:text-white p-2 rounded-lg bg-[#141414]"
               aria-label="Toggle menu"
             >
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </button>
           </div>
         </div>
@@ -192,7 +220,8 @@ export function Nav({ user }: NavProps) {
             {user ? (
               <div className="space-y-3">
                 <div className="text-xs text-[#A1A1A1]">
-                  Signed in as <span className="font-semibold text-white">{user.name}</span>
+                  Signed in as{" "}
+                  <span className="font-semibold text-white">{user.name}</span>
                 </div>
                 <button
                   type="button"

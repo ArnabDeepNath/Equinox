@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { Nav } from "@/components/nav";
@@ -15,6 +15,10 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
 });
 
@@ -35,7 +39,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#060606] text-white">
         <Providers>
@@ -43,6 +47,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           <PwaRegister />
           <Nav user={user} />
           <main className="flex-1">{children}</main>
+          <Footer />
         </Providers>
       </body>
     </html>

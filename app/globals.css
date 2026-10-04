@@ -2,15 +2,15 @@
 
 :root {
   --background: #060606;
-  --foreground: #FFFFFF;
-  --surface: #0D0D0D;
-  --border: #1A1813;
-  --text-muted: #A1A1A1;
-  --primary-yellow: #E5C158;
-  --primary-gold: #E5C158;
-  --gold: #E5C158;
-  --gold-soft: #F6E7B8;
-  --muted-foreground: #9E9E9E;
+  --foreground: #ffffff;
+  --surface: #0d0d0d;
+  --border: #1a1813;
+  --text-muted: #a1a1a1;
+  --primary-yellow: #e5c158;
+  --primary-gold: #e5c158;
+  --gold: #e5c158;
+  --gold-soft: #f6e7b8;
+  --muted-foreground: #9e9e9e;
 }
 
 @theme inline {
@@ -22,12 +22,19 @@
   --color-primary-yellow: var(--primary-yellow);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family:
+    var(--font-geist-sans),
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -39,21 +46,21 @@ a {
 
 ::selection {
   background: rgba(229, 193, 88, 0.25);
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .gold-gradient-text {
-  background: linear-gradient(135deg, #FFF4C2 0%, #E5C158 50%, #B98D29 100%);
+  background: linear-gradient(135deg, #fff4c2 0%, #e5c158 50%, #b98d29 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gold-gradient-bg {
-  background: linear-gradient(135deg, #FBE8A6 0%, #E5C158 50%, #B98D29 100%);
+  background: linear-gradient(135deg, #fbe8a6 0%, #e5c158 50%, #b98d29 100%);
 }
 
 .gold-button {
-  background: linear-gradient(135deg, #F5D77F 0%, #E5C158 50%, #C49830 100%);
+  background: linear-gradient(135deg, #f5d77f 0%, #e5c158 50%, #c49830 100%);
   color: #000000;
   font-weight: 700;
   box-shadow: 0 4px 20px -2px rgba(229, 193, 88, 0.25);
@@ -61,7 +68,95 @@ a {
 }
 
 .gold-button:hover {
-  background: linear-gradient(135deg, #FFF0B3 0%, #EDB844 50%, #AF8323 100%);
+  background: linear-gradient(135deg, #fff0b3 0%, #edb844 50%, #af8323 100%);
   box-shadow: 0 6px 24px 0 rgba(229, 193, 88, 0.35);
   transform: translateY(-1px);
+}
+
+/* ---------- Premium landing motion ---------- */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll 38s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 0.35;
+  }
+}
+
+.scroll-cue {
+  animation: scroll-cue 2.2s ease-in-out infinite;
+}
+
+@keyframes gold-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(229, 193, 88, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 24px 4px rgba(229, 193, 88, 0.12);
+  }
+}
+
+.gold-pulse {
+  animation: gold-pulse 4s ease-in-out infinite;
+}
+
+/* Scroll reveal (driven by components/reveal.tsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hairline gold divider */
+.gold-hairline {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(229, 193, 88, 0.55) 50%,
+    transparent 100%
+  );
+  height: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .scroll-cue,
+  .gold-pulse {
+    animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
